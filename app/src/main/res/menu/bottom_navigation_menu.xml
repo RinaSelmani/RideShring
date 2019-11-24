@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/map"
-          android:title="Map"
+
+    <item android:id="@+id/mapFragment2"
+          android:title="@string/map"
           android:icon="@drawable/map"
             />
-    <item android:id="@+id/rides"
+    <item android:id="@+id/ridesFragment2"
           android:icon="@drawable/ride"
-          android:title="Rides"
+          android:title="@string/rides"
             />
-    <item android:id="@+id/profile"
+    <item android:id="@+id/profileFragment2"
           android:icon="@drawable/profile"
-          android:title="Profile"
+          android:title="@string/profile"
             />
 </menu>

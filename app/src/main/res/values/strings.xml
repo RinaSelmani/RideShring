@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CarSharing</string>
     <string name="application_name">CAR SHARING KOSOVA</string>
+    <string name="map">map</string>
+    <string name="rides">rides</string>
+    <string name="profile">profile</string>
 </resources>

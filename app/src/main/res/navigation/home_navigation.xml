@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/home_naviagtion"
+            app:startDestination="@id/mapFragment2"
+        >
+    <fragment android:id="@+id/mapFragment2"
+              android:name="com.thesis.carsharing.ui.home.MapFragment"
+              android:label="map"
+            >
+        <action android:id="@+id/rides_action"
+                app:destination="@+id/ridesFragment2"
+                />
+    </fragment>
+    <fragment android:id="@+id/profileFragment2"
+              android:name="com.thesis.carsharing.ui.home.ProfileFragment"
+              android:label="@string/profile"
+            >
+        <action android:id="@+id/map_action"
+                app:destination="@id/mapFragment2"
+                />
+    </fragment>
+    <fragment android:id="@+id/ridesFragment2"
+              android:name="com.thesis.carsharing.ui.home.RidesFragment"
+              android:label="rides"
+            >
+        <action android:id="@+id/profile_action"
+                app:destination="@id/profileFragment2"
+                />
+    </fragment>
+</navigation>
