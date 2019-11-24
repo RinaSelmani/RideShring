@@ -26,7 +26,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/home_navigation"
                 tools:layout="@layout/map_fragment"/>
@@ -34,13 +34,15 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 app:menu="@menu/bottom_navigation_menu"
+                android:layout_marginRight="@dimen/size_15"
+                android:layout_marginLeft="@dimen/size_15"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="@dimen/size_15"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,15 +12,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
+            android:background="@color/ghost_white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
-                android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
                 app:layout_constraintTop_toTopOf="parent"
-                android:text="Rides Fragment"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                app:tabMode="fixed"
+                android:background="@color/ghost_white"
+                app:tabIndicatorColor="@color/colorPrimary"
+                style="@style/MyCustomTabLayout"
+                app:tabTextColor="@color/light_gray"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:text="Posted Rides"
+                    android:layout_height="wrap_content"/>
+
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:text="Participated Rides"
+                    android:layout_height="wrap_content"/>
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager"
+                android:background="@color/blue"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="@dimen/size_0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
