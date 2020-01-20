@@ -4,7 +4,6 @@
     <string name="map">Map</string>
     <string name="rides">Rides</string>
     <string name="profile">Profile</string>
-    <string name="personal_information">Personal Information</string>
     <string name="past_rides">Past Rides</string>
     <string name="my_vehicles">My Vehicles</string>
     <string name="imageview_for_profile">Imageview for profile</string>
@@ -15,4 +14,11 @@
     <string name="register">Register</string>
     <string name="log_out">Log out</string>
     <string name="archived">Archived</string>
+    <string name="type">Type :</string>
+    <string name="delete">Delete</string>
+    <string name="year_of_production">Year of Production :</string>
+    <string name="color">Color :</string>
+    <string name="add_car">Add Car</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="add_vehicle">Add Vehicle</string>
 </resources>

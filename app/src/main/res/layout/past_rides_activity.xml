@@ -28,7 +28,6 @@
                 android:layout_width="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
                 android:orientation="horizontal"
@@ -40,7 +39,7 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/arrow_back"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:src="@drawable/ic_arrow_back"
                     android:layout_height="wrap_content"/>
 
             <TextView
@@ -49,7 +48,7 @@
                     android:textSize="@dimen/text_size_15"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorPrimary"
                     android:layout_height="match_parent"/>
         </RelativeLayout>
 

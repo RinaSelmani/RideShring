@@ -32,6 +32,19 @@
                     app:layout_constraintGuide_percent="0.1"
                     android:layout_height="wrap_content"/>
 
+            <TextView
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
+                    android:layout_height="wrap_content"/>
+
+
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/horizontal_guideline_90"
                     android:layout_width="match_parent"

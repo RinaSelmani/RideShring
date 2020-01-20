@@ -40,13 +40,26 @@
                     android:layout_height="wrap_content"/>
 
             <ImageButton
-                    android:layout_width="18dp"
+                    android:layout_width="wrap_content"
                     android:background="@android:color/transparent"
-                    android:layout_height="18dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_10"
                     android:onClick="@{()->model.closeActivity()}"
                     android:src="@drawable/ic_arrow_back"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/size_10"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="@string/personal_information"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="wrap_content"/>
 
             <ImageView
                     android:id="@+id/profile_image_view"

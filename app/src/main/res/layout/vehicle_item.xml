@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+<layout
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+                name="v"
+                type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:background="@drawable/rounded_corners"
+            android:padding="@dimen/size_10"
+            android:layout_margin="@dimen/size_10"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_50"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/vehice_image_view"
+                android:layout_width="100dp"
+                app:layout_constraintBottom_toTopOf="@id/type_desc_text_view"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_car__"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="100dp"/>
+
+        <TextView
+                android:id="@+id/type_text_view"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/vehice_image_view"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="24dp"
+                android:text="@string/type"/>
+
+        <TextView
+                android:id="@+id/type_desc_text_view"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/vehice_image_view"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                android:layout_height="wrap_content"
+                android:text="Mercedes Class 10"/>
+
+        <TextView
+                android:id="@+id/year_of_production_text_view"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/type_text_view"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
+                android:text="@string/year_of_production"/>
+
+        <TextView
+                android:id="@+id/year_of_production_desc_text_view"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/type_desc_text_view"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                android:layout_height="wrap_content"
+                android:text="2004"/>
+
+        <TextView
+                android:id="@+id/color_text_view"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/year_of_production_text_view"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
+                android:text="@string/color"/>
+
+        <TextView
+                android:id="@+id/color_desc_text_view"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/year_of_production_desc_text_view"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                android:layout_height="wrap_content"
+                android:text="Blue"/>
+
+        <ImageButton
+                android:layout_width="50dp"
+                android:src="@drawable/ic_delete"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@android:color/transparent"
+                android:layout_height="50dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

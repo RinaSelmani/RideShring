@@ -1,11 +1,15 @@
 package com.thesis.ridesharing.ui.my_vehicles
 
+import com.thesis.ridesharing.databinding.MyVehiclesActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
-import com.thesis.ridesharing.ui.add_car.AddCarActivity
+import com.thesis.ridesharing.ui.add_car.AddVehicleActivity
 import org.greenrobot.eventbus.EventBus
 
-class MyVehiclesModel {
+class MyVehiclesModel(binding: MyVehiclesActivityBinding, adapter: MyVehiclesAdapter) {
+    init {
+        binding.vehiclesRecycleView.adapter = adapter
+    }
 
 
     fun closeActivity() {
@@ -13,6 +17,6 @@ class MyVehiclesModel {
     }
 
     fun openAddCarActivity() {
-        EventBus.getDefault().post(OpenActivityEvent(AddCarActivity()))
+        EventBus.getDefault().post(OpenActivityEvent(AddVehicleActivity()))
     }
 }

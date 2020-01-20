@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 />
 
-        <TextView
+        <Button
                 android:id="@+id/personal_information_text_view"
                 android:layout_width="match_parent"
                 android:onClick="@{()->model.openPersonalInformationActivity()}"
@@ -77,9 +77,10 @@
                 android:text="@string/personal_information"
                 android:layout_height="wrap_content"/>
 
-        <TextView
+        <Button
                 android:id="@+id/my_vehicles_text_view"
                 android:layout_width="match_parent"
+                android:onClick="@{()->model.openMyVehiclesActivity()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/personal_information_text_view"
@@ -92,7 +93,7 @@
                 android:layout_height="wrap_content"
                 />
 
-        <TextView
+        <Button
                 android:id="@+id/past_rides_text_view"
                 android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +109,7 @@
                 android:layout_height="wrap_content"
                 />
 
-        <TextView
+        <Button
                 android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
