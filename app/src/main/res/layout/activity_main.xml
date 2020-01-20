@@ -16,7 +16,12 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity">
 
-
+<androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guideline_90"
+        android:layout_width="match_parent"
+        app:layout_constraintGuide_percent="0.95"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"/>
 
         <fragment
                 android:id="@+id/nav_host_fragment"
@@ -38,11 +43,10 @@
                 app:menu="@menu/bottom_navigation_menu"
                 android:layout_marginRight="@dimen/size_15"
                 android:layout_marginLeft="@dimen/size_15"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_90"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/size_15"/>
+                android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

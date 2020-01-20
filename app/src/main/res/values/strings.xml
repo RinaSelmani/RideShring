@@ -8,4 +8,11 @@
     <string name="past_rides">Past Rides</string>
     <string name="my_vehicles">My Vehicles</string>
     <string name="imageview_for_profile">Imageview for profile</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="first_name">First Name</string>
+    <string name="register">Register</string>
+    <string name="log_out">Log out</string>
+    <string name="archived">Archived</string>
 </resources>

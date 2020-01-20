@@ -1,13 +1,14 @@
-package com.thesis.carsharing.ui
+package com.thesis.ridesharing.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.thesis.carsharing.MainActivity
-import com.thesis.carsharing.R
-import com.thesis.carsharing.databinding.SplachScreenActivityBinding
+import com.thesis.ridesharing.R
+import com.thesis.ridesharing.databinding.SplachScreenActivityBinding
+import com.thesis.ridesharing.ui.login.LoginActivity
+import com.thesis.ridesharing.ui.register.RegisterActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.splach_screen_activity)
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }, SPLASH_SCREEN_TIME)
 

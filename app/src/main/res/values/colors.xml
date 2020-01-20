@@ -9,4 +9,5 @@
     <color name="ghost_white">#F8F8FF</color>
     <color name="black">#000000</color>
     <color name="blue">#1D2952</color>
+    <color name="light_red">#ffcccb</color>
 </resources>

@@ -1,18 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
                 name="v"
                 type="android.view.View"/>
+
+        <variable
+                name="model"
+                type="com.thesis.ridesharing.ui.login.LoginModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:padding="@dimen/text_size_20"
             android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_20"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.2"
+                android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_60"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.8"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/imageview_for_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_girl"
+                app:layout_constraintBottom_toTopOf="@id/email_edit_line"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_20"
+                />
+
+        <EditText
+                android:id="@+id/email_edit_line"
+                android:layout_width="match_parent"
+                android:hint="@string/email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_image_view"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/password_edit_line"
+                android:layout_width="match_parent"
+                android:hint="@string/password"
+                android:layout_marginTop="@dimen/size_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_edit_line"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/password_edit_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/log_in"
+                android:onClick="@{()->model.login()}"
+                android:layout_marginTop="@dimen/size_20"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_corners_red"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_15"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:onClick="@{()->model.openRegisterActivity()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Dont have an account?\nClick here to register"
+                android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

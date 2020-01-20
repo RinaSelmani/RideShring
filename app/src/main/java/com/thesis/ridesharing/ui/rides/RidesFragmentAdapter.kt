@@ -1,4 +1,4 @@
-package com.thesis.carsharing.ui.rides
+package com.thesis.ridesharing.ui.rides
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

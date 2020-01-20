@@ -11,7 +11,7 @@
 
         <variable
                 name="model"
-                type="com.thesis.ridesharing.ui.register.RegisterModel"/>
+                type="com.thesis.ridesharing.ui.personal_information.PersonalInformationModel"/>
     </data>
 
     <ScrollView
@@ -38,6 +38,15 @@
                     android:orientation="horizontal"
                     app:layout_constraintGuide_percent="0.9"
                     android:layout_height="wrap_content"/>
+
+            <ImageButton
+                    android:layout_width="18dp"
+                    android:background="@android:color/transparent"
+                    android:layout_height="18dp"
+                    android:onClick="@{()->model.closeActivity()}"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
             <ImageView
                     android:id="@+id/profile_image_view"
@@ -109,10 +118,10 @@
                     app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_90"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:text="@string/register"
+                    android:text="Update"
                     android:layout_marginTop="@dimen/size_20"
                     android:textColor="@color/white"
-                    android:onClick="@{()->model.register()}"
+                    android:onClick="@{()->model.update()}"
                     android:textAllCaps="false"
                     android:background="@drawable/rounded_corners_red"
                     android:layout_height="wrap_content"/>

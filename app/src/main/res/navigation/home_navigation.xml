@@ -5,7 +5,7 @@
             app:startDestination="@id/mapFragment2"
         >
     <fragment android:id="@+id/mapFragment2"
-              android:name="com.thesis.carsharing.ui.home.MapFragment"
+              android:name="com.thesis.ridesharing.ui.home.MapFragment"
               android:label="map"
             >
         <action android:id="@+id/rides_action"
@@ -13,7 +13,7 @@
                 />
     </fragment>
     <fragment android:id="@+id/profileFragment2"
-              android:name="com.thesis.carsharing.ui.home.ProfileFragment"
+              android:name="com.thesis.ridesharing.ui.home.profile.ProfileFragment"
               android:label="@string/profile"
             >
         <action android:id="@+id/map_action"
@@ -21,7 +21,7 @@
                 />
     </fragment>
     <fragment android:id="@+id/ridesFragment2"
-              android:name="com.thesis.carsharing.ui.home.RidesFragment"
+              android:name="com.thesis.ridesharing.ui.home.RidesFragment"
               android:label="rides"
             >
         <action android:id="@+id/profile_action"

@@ -7,6 +7,10 @@
                 name="v"
                 type="android.view.View"
                 />
+
+        <variable
+                name="model"
+                type="com.thesis.ridesharing.ui.home.profile.ProfileViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,11 +29,11 @@
                 />
 
         <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/horizontal_guideline_40"
+                android:id="@+id/horizontal_guideline_30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.4"
+                app:layout_constraintGuide_percent="0.3"
                 />
 
         <ImageView
@@ -60,10 +64,12 @@
         <TextView
                 android:id="@+id/personal_information_text_view"
                 android:layout_width="match_parent"
+                android:onClick="@{()->model.openPersonalInformationActivity()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_40"
+                app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_30"
                 android:padding="@dimen/size_20"
+
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_margin="@dimen/size_20"
@@ -87,16 +93,34 @@
                 />
 
         <TextView
+                android:id="@+id/past_rides_text_view"
                 android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/my_vehicles_text_view"
                 android:padding="@dimen/size_20"
+                android:onClick="@{()->model.openPastRidesActivity()}"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_margin="@dimen/size_20"
                 android:background="@drawable/rounded_corners_red"
                 android:text="@string/past_rides"
+                android:layout_height="wrap_content"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/past_rides_text_view"
+                android:padding="@dimen/size_20"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"
+                android:onClick="@{()->model.logout()}"
+                android:layout_margin="@dimen/size_20"
+                android:drawableRight="@drawable/ic_exit"
+                android:background="@drawable/rounded_light_red"
+                android:text="@string/log_out"
                 android:layout_height="wrap_content"
                 />
 

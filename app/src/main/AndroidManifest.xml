@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.thesis.carsharing">
+          package="com.thesis.ridesharing">
 
     <application
             android:allowBackup="true"
@@ -14,7 +14,8 @@
                 android:name="com.google.android.maps.v2.API_KEY"
                 android:value="AIzaSyA8koAEsGGu7jD2ieVasIOKczJGdSFe45E"
                 />
-        <activity android:name=".ui.SplashScreenActivity">
+
+        <activity android:name="com.thesis.ridesharing.ui.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -42,20 +43,15 @@
                         android:host="redirect"
                         android:scheme="sociallogin"/>
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data
-                        android:host="redirect"
-                        android:scheme="sociallogin"/>
-            </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ui.RegisterActivity"/>
-        <activity android:name=".ui.LoginActivity"/>
+        <activity android:name="com.thesis.ridesharing.MainActivity"/>
+        <activity android:name="com.thesis.ridesharing.ui.register.RegisterActivity"/>
+        <activity android:name="com.thesis.ridesharing.ui.login.LoginActivity"/>
+        <activity android:name=".ui.personal_information.PersonalInformationActivity"/>
+        <activity android:name=".ui.rides.past_rides.PastRidesActivity"/>
+        <activity android:name=".ui.my_vehicles.MyVehiclesActivity"/>
+        <activity android:name=".ui.add_car.AddCarActivity"/>
 
 
 

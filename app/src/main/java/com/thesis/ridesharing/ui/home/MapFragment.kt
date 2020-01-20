@@ -1,16 +1,15 @@
-package com.thesis.carsharing.ui.home
+package com.thesis.ridesharing.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.MapStyleOptions
-import com.thesis.carsharing.R
-import com.thesis.carsharing.databinding.MapFragmentBinding
+import com.thesis.ridesharing.R
+import com.thesis.ridesharing.databinding.MapFragmentBinding
 import kotlinx.android.synthetic.main.map_fragment.*
 
 class MapFragment : Fragment(), OnMapReadyCallback {

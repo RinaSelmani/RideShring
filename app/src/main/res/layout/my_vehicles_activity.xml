@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="view"
+                type="android.view.View"/>
+
+        <variable
+                name="model"
+                type="com.thesis.ridesharing.ui.my_vehicles.MyVehiclesModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_10"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_15"
+                android:gravity="center"
+                android:text="@string/my_vehicles"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
+                android:layout_height="wrap_content"/>
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:onClick="@{()->model.closeActivity()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_arrow_back"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
+                android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/past_rides_text_view"
+                android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="@dimen/size_20"
+                android:textColor="@color/white"
+                android:onClick="@{()->model.openAddCarActivity()}"
+                android:gravity="center"
+                android:layout_margin="@dimen/size_20"
+                android:background="@drawable/rounded_corners_red"
+                android:text="Add new vehicle"
+                android:layout_height="wrap_content"
+                />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

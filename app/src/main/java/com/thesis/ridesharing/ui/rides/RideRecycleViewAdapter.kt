@@ -1,11 +1,11 @@
-package com.thesis.carsharing.ui.rides
+package com.thesis.ridesharing.ui.rides
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.thesis.carsharing.R
-import com.thesis.carsharing.databinding.RideItemBinding
+import com.thesis.ridesharing.R
+import com.thesis.ridesharing.databinding.RideItemBinding
 
 class RideRecycleViewAdapter : RecyclerView.Adapter<RideRecycleViewAdapter.RideItemViewModel>() {
     override fun onCreateViewHolder(container: ViewGroup, position: Int): RideItemViewModel {

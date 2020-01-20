@@ -1,4 +1,4 @@
-package com.thesis.carsharing
+package com.thesis.ridesharing
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
