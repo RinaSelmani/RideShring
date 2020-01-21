@@ -21,4 +21,9 @@
     <string name="add_car">Add Car</string>
     <string name="personal_information">Personal Information</string>
     <string name="add_vehicle">Add Vehicle</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
+    <string name="color_decp">Color</string>
+    <string name="year_of_production_decp">Year of Production</string>
+    <string name="ride_detailes">Ride Details</string>
 </resources>

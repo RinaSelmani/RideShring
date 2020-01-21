@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.ui.add_car
+package com.thesis.ridesharing.ui.add_vehicle
 
 import com.thesis.ridesharing.databinding.AddVehicleActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
@@ -28,6 +28,11 @@ class AddVehicleModel(val binding: AddVehicleActivityBinding) {
     }
 
     fun addVehicle() {
+        EventBus.getDefault().post(CloseActivityEvent())
+    }
+
+    fun addYear() {
+        EventBus.getDefault().post(OpenDialogEvent("Year"))
 
     }
 

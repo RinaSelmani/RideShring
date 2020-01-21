@@ -11,3 +11,12 @@ val car_brands = hashMapOf(
 )
 
 val colors = arrayOf("Blue", "Red", "Black", "Yellow", "Gray", "White")
+
+fun years(): ArrayList<String> {
+    val years = arrayListOf<String>()
+    for (a in 1995..2020) {
+        years.add(a.toString())
+    }
+
+    return years
+}

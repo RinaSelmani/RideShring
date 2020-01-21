@@ -8,12 +8,17 @@
         <import
                 type="android.view.View"/>
 
+        <variable
+                name="model"
+                type="com.thesis.ridesharing.ui.rides.RideAdapter.RideItemViewModel"/>
+
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
             android:padding="@dimen/size_10"
+            android:onClick="@{()->model.openRideDetails()}"
             android:background="@drawable/rounded_corners"
             android:layout_width="match_parent"
             android:layout_margin="@dimen/size_20"

@@ -11,7 +11,7 @@
 
         <variable
                 name="model"
-                type="com.thesis.ridesharing.ui.add_car.AddVehicleModel"/>
+                type="com.thesis.ridesharing.ui.add_vehicle.AddVehicleModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,8 +72,8 @@
                 android:id="@+id/brand_edit_text"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorPrimary"
-                android:layout_marginLeft="@dimen/size_5"
-                android:hint="Brand"
+                android:layout_marginLeft="@dimen/size_10"
+                android:hint="@string/brand"
                 android:focusable="false"
                 android:inputType="none"
                 android:textColor="@color/colorPrimary"
@@ -87,7 +87,7 @@
                 android:id="@+id/model_edit_text"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorPrimary"
-                android:hint="Type"
+                android:hint="@string/model"
                 android:focusable="false"
                 android:inputType="none"
                 android:onClick="@{()->model.addModel()}"
@@ -104,7 +104,7 @@
                 android:id="@+id/color_edit_text"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/colorPrimary"
-                android:hint="Color"
+                android:hint="@string/color_decp"
                 android:inputType="none"
                 android:focusable="false"
                 android:onClick="@{()->model.addColor()}"
@@ -117,6 +117,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/model_edit_text"
                 android:layout_height="wrap_content"/>
 
+
+        <EditText
+                android:id="@+id/year_of_production_edit_text"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/year_of_production_decp"
+                android:inputType="none"
+                android:focusable="false"
+                android:onClick="@{()->model.addYear()}"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="@dimen/size_10"
+                android:textColorHint="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                android:drawableRight="@drawable/ic_arrow_drop_down"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/color_edit_text"
+                android:layout_height="wrap_content"/>
 
         <Button
                 android:id="@+id/past_rides_text_view"

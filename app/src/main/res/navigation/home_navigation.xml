@@ -5,7 +5,7 @@
             app:startDestination="@id/mapFragment2"
         >
     <fragment android:id="@+id/mapFragment2"
-              android:name="com.thesis.ridesharing.ui.home.MapFragment"
+              android:name="com.thesis.ridesharing.ui.home.map.MapFragment"
               android:label="map"
             >
         <action android:id="@+id/rides_action"

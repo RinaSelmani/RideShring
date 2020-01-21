@@ -1,7 +1,7 @@
-package com.thesis.ridesharing.ui.add_car
+package com.thesis.ridesharing.ui.add_vehicle
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,6 +11,7 @@ import com.thesis.ridesharing.colors
 import com.thesis.ridesharing.databinding.AddVehicleActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.OpenDialogEvent
+import com.thesis.ridesharing.years
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -52,36 +53,43 @@ class AddVehicleActivity : AppCompatActivity() {
             }
             "Model" -> {
                 val brand = binding.brandEditText.text.toString()
-                if (!brand.equals("Brand")) {
+                if (!brand.equals("")) {
                     items = car_brands[brand]!!
                 } else {
+                    Toast.makeText(this, "Chose a brand first please", Toast.LENGTH_SHORT).show()
+                    return
                 }
 
             }
             "Color" -> {
                 items = colors
             }
+            "Year" -> {
+                items = years().toTypedArray()
+            }
         }
 
-        val checkedItem = 1 // cow
+        var checkedItem = 0
         builder.setSingleChoiceItems(items, checkedItem) { dialog, which ->
-            // user checked an item
+            checkedItem = which
         }
 
 
         builder.setPositiveButton("OK") { dialog, which ->
             when (type) {
                 "Brand" -> {
-                    //Log.println(which)
-                    //binding.brandEditText.setText(items[which])
+                    binding.brandEditText.setText(items[checkedItem])
                 }
                 "Model" -> {
-                    binding.modelEditText.setText(items[which])
+                    binding.modelEditText.setText(items[checkedItem])
 
                 }
                 "Color" -> {
-                    binding.colorEditText.setText(items[which])
+                    binding.colorEditText.setText(items[checkedItem])
 
+                }
+                "Year" -> {
+                    binding.yearOfProductionEditText.setText(items[checkedItem])
                 }
             }
         }

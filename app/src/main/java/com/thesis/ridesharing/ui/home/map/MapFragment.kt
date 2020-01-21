@@ -1,9 +1,10 @@
-package com.thesis.ridesharing.ui.home
+package com.thesis.ridesharing.ui.home.map
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,7 +23,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     lateinit var binding: MapFragmentBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.map_fragment, container, false).rootView
+        binding=DataBindingUtil.inflate(inflater,R.layout.map_fragment,container,false)
+        binding.model= MapModel()
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -11,13 +11,13 @@ import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.RidesListFragmentBinding
 
 class Rides : Fragment() {
-    lateinit var adapter: RideRecycleViewAdapter
+    lateinit var adapter: RideAdapter
     lateinit var binding: RidesListFragmentBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.rides_list_fragment, container, false)
         val mLayoutManager = LinearLayoutManager(context)
         binding.ridesRecycleview.layoutManager = mLayoutManager
-        adapter = RideRecycleViewAdapter()
+        adapter = RideAdapter()
         binding.ridesRecycleview.adapter = adapter
         return binding.root
     }
