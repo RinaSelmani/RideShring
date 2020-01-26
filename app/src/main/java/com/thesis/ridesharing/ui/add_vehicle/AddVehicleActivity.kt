@@ -5,13 +5,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.thesis.ridesharing.R
-import com.thesis.ridesharing.car_brands
-import com.thesis.ridesharing.colors
+import com.thesis.ridesharing.*
 import com.thesis.ridesharing.databinding.AddVehicleActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.OpenDialogEvent
-import com.thesis.ridesharing.years
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -68,6 +65,9 @@ class AddVehicleActivity : AppCompatActivity() {
             "Year" -> {
                 items = years().toTypedArray()
             }
+            "Seats" -> {
+                items = seats().toTypedArray()
+            }
         }
 
         var checkedItem = 0
@@ -91,6 +91,9 @@ class AddVehicleActivity : AppCompatActivity() {
                 }
                 "Year" -> {
                     binding.yearOfProductionEditText.setText(items[checkedItem])
+                }
+                "Seats" -> {
+                    binding.seatsEditText.setText(items[checkedItem])
                 }
             }
         }

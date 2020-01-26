@@ -27,4 +27,8 @@
     <string name="year_of_production_decp">Year of production</string>
     <string name="ride_detailes">Ride Details</string>
     <string name="forgot_password">Forgot Password</string>
+    <string name="number_of_seats">Number of seats</string>
+    <string name="price">Price*</string>
+    <string name="description_about_the_ride">Description about the ride</string>
+    <string name="add_ride">Add Ride</string>
 </resources>

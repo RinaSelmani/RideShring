@@ -25,7 +25,6 @@ class MyVehiclesModel(val binding: MyVehiclesActivityBinding, val adapter: MyVeh
         uid = FirebaseAuth.getInstance().currentUser!!.uid
         binding.vehiclesRecycleView.adapter = adapter
         firestoreDb = FirebaseFirestore.getInstance()
-        //getVehicles()
     }
 
 
@@ -43,7 +42,8 @@ class MyVehiclesModel(val binding: MyVehiclesActivityBinding, val adapter: MyVeh
                         brand = i["brand"].toString(),
                         model = i["model"].toString(),
                         color = i["color"].toString(),
-                        yearOfProduction = i["yearOfProduction"].toString()
+                        yearOfProduction = i["yearOfProduction"].toString(),
+                        numberOfSeats = i["numberOfSeats"].toString().toInt()
                     )
                     vehicles.add(vehicle)
                 }

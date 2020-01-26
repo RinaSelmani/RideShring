@@ -29,11 +29,13 @@ class AddVehicleModel(val binding: AddVehicleActivityBinding) {
             val modelText = binding.modelEditText.text.toString()
             val colorText = binding.colorEditText.text.toString()
             val yearOfProductionText = binding.yearOfProductionEditText.text.toString()
+            val numberOfSeats = binding.seatsEditText.text.toString().toInt()
             val vehicle = Vehicle(
                 brand = brandText,
                 model = modelText,
                 color = colorText,
-                yearOfProduction = yearOfProductionText
+                yearOfProduction = yearOfProductionText,
+                numberOfSeats = numberOfSeats
             )
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
             val documentReference = firestoreDb.collection(VEHICLE_COLLECTION).document(uid)
@@ -86,9 +88,10 @@ class AddVehicleModel(val binding: AddVehicleActivityBinding) {
         val modelHint = binding.modelEditText.text.toString()
         val colorHint = binding.colorEditText.text.toString()
         val yearOfProductionHint = binding.yearOfProductionEditText.text.toString()
+        val seats = binding.seatsEditText.text.toString()
         if (!brandHint.equals("") and !modelHint.equals("") and !colorHint.equals("") and !yearOfProductionHint.equals(
                 ""
-            )
+            ) and !seats.equals("")
         ) {
             return true
         }
@@ -108,6 +111,9 @@ class AddVehicleModel(val binding: AddVehicleActivityBinding) {
 
     }
 
+    fun addSeat() {
+        EventBus.getDefault().post(OpenDialogEvent("Seats"))
+    }
     fun addBrand() {
         EventBus.getDefault().post(OpenDialogEvent("Brand"))
     }

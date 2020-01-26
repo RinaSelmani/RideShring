@@ -11,7 +11,8 @@ import com.thesis.ridesharing.events.DeleteVehicle
 import com.thesis.ridesharing.models.Vehicle
 import org.greenrobot.eventbus.EventBus
 
-class MyVehiclesAdapter : RecyclerView.Adapter<MyVehiclesAdapter.VehicleItem>() {
+class MyVehiclesAdapter(val isAddRide: Boolean = false) :
+    RecyclerView.Adapter<MyVehiclesAdapter.VehicleItem>() {
     var vehicles: MutableList<Vehicle> = mutableListOf()
     override fun onCreateViewHolder(container: ViewGroup, position: Int): VehicleItem {
         val binding: VehicleItemBinding = DataBindingUtil.inflate(
@@ -29,8 +30,11 @@ class MyVehiclesAdapter : RecyclerView.Adapter<MyVehiclesAdapter.VehicleItem>() 
     override fun onBindViewHolder(holder: VehicleItem, position: Int) {
         holder.binding.vehicle = vehicles[position]
         holder.binding.position = position
-        if (position == vehicles.size - 1) {
+        if (((position == vehicles.size - 1) and !isAddRide)) {
             holder.binding.bottomTextview.visibility=View.VISIBLE
+        }
+        if (isAddRide) {
+            holder.binding.deleteImagebutton.visibility = View.INVISIBLE
         }
     }
 

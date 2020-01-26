@@ -48,6 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/rounded_corners_red"
                 android:src="@drawable/ic_add_"
+                android:onClick="@{()->model.addRide()}"
                 android:layout_marginBottom="@dimen/size_5"
                 android:layout_marginRight="@dimen/size_10"
                 android:padding="@dimen/size_10"

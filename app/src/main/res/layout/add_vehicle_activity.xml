@@ -159,6 +159,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/color_edit_text"
                 android:layout_height="wrap_content"/>
 
+        <EditText
+                android:id="@+id/seats_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_10"
+                android:backgroundTint="@color/colorPrimary"
+                android:drawableRight="@drawable/ic_arrow_drop_down"
+                android:focusable="false"
+                android:hint="Number of Seats"
+                android:inputType="none"
+                android:onClick="@{()->model.addSeat()}"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/year_of_production_edit_text" />
+
         <Button
                 android:id="@+id/past_rides_text_view"
                 android:layout_width="match_parent"

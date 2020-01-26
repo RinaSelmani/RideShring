@@ -20,3 +20,12 @@ fun years(): ArrayList<String> {
 
     return years
 }
+
+fun seats(): ArrayList<String> {
+    val seats = arrayListOf<String>()
+    for (a in 2..10) {
+        seats.add(a.toString())
+    }
+
+    return seats
+}
