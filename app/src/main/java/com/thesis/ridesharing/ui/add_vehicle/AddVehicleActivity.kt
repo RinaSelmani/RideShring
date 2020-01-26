@@ -23,6 +23,7 @@ class AddVehicleActivity : AppCompatActivity() {
         binding.model = AddVehicleModel(binding)
     }
 
+
     public override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)

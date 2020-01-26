@@ -19,6 +19,29 @@
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+        <LinearLayout
+                android:id="@+id/progress_bar_holder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:background="@color/gray_background"
+                android:gravity="center"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                    android:id="@+id/progress_circular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateDrawable="@drawable/gradient_progress_bar"
+                    android:indeterminateTintMode="src_in"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/horizontal_guideline_10"

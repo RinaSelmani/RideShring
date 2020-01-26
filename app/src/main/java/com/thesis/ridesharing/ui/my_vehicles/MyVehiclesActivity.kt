@@ -2,12 +2,14 @@ package com.thesis.ridesharing.ui.my_vehicles
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.MyVehiclesActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
+import com.thesis.ridesharing.events.DeleteVehicle
 import com.thesis.ridesharing.events.OpenActivityEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -15,14 +17,24 @@ import org.greenrobot.eventbus.Subscribe
 class MyVehiclesActivity : AppCompatActivity() {
     lateinit var binding: MyVehiclesActivityBinding
     lateinit var adapter: MyVehiclesAdapter
+    lateinit var model: MyVehiclesModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.my_vehicles_activity)
         val mLayoutManager = LinearLayoutManager(this)
         binding.vehiclesRecycleView.layoutManager = mLayoutManager
         adapter = MyVehiclesAdapter()
-        binding.model = MyVehiclesModel(binding, adapter)
+        model = MyVehiclesModel(binding, adapter)
+        binding.model = model
 
+    }
+
+
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.model!!.getVehicles()
     }
 
     public override fun onStart() {
@@ -44,5 +56,11 @@ class MyVehiclesActivity : AppCompatActivity() {
     @Subscribe
     fun event(closeActivityEvent: CloseActivityEvent) {
         onBackPressed()
+    }
+
+    @Subscribe
+    fun event(deleteVehicle: DeleteVehicle) {
+        binding.progressBarHolder.visibility = View.VISIBLE
+        model.deleteVehicle(position = deleteVehicle.position)
     }
 }

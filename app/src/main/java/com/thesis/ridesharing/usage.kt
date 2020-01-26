@@ -1,6 +1,6 @@
 package com.thesis.ridesharing
 
-
+val email_pattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+"
 val car_brands = hashMapOf(
     "Audi" to arrayOf("Audi A1", "Audi A3", "Audi A5"),
     "BMW" to arrayOf("X1", "X2", "X3", "X5"),

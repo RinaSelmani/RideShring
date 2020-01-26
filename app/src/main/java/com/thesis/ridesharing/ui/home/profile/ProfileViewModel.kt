@@ -1,5 +1,6 @@
 package com.thesis.ridesharing.ui.home.profile
 
+import com.google.firebase.auth.FirebaseAuth
 import com.thesis.ridesharing.databinding.ProfileFragmentBinding
 import com.thesis.ridesharing.events.LogOutEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
@@ -15,6 +16,7 @@ class ProfileViewModel(val binding: ProfileFragmentBinding) {
     }
 
     fun logout() {
+        FirebaseAuth.getInstance().signOut()
         EventBus.getDefault().post(LogOutEvent())
     }
 

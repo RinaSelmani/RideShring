@@ -7,6 +7,18 @@
         <variable
                 name="v"
                 type="android.view.View"/>
+
+        <variable
+                name="vehicle"
+                type="com.thesis.ridesharing.models.Vehicle" />
+
+        <variable
+                name="model"
+                type="com.thesis.ridesharing.ui.my_vehicles.MyVehiclesAdapter.VehicleItem" />
+
+        <variable
+                name="position"
+                type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,7 +69,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
                 android:layout_height="wrap_content"
-                android:text="Mercedes Class 10"/>
+                android:text="@{vehicle.getBrandAndModel()}" />
 
         <TextView
                 android:id="@+id/year_of_production_text_view"
@@ -81,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
                 android:layout_height="wrap_content"
-                android:text="2004"/>
+                android:text="@{vehicle.yearOfProduction}" />
 
         <TextView
                 android:id="@+id/color_text_view"
@@ -105,11 +117,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
                 android:layout_height="wrap_content"
-                android:text="Blue"/>
+                android:text="@{vehicle.color}" />
+
+        <TextView
+                android:id="@+id/bottom_textview"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/color_desc_text_view" />
 
         <ImageButton
                 android:layout_width="50dp"
                 android:src="@drawable/ic_delete"
+                android:onClick="@{(v)->model.deleteVehicle(position)}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@android:color/transparent"

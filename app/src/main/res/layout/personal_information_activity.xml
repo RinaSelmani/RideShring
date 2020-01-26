@@ -12,6 +12,10 @@
         <variable
                 name="model"
                 type="com.thesis.ridesharing.ui.personal_information.PersonalInformationModel"/>
+
+        <variable
+                name="user"
+                type="com.thesis.ridesharing.models.User" />
     </data>
 
     <ScrollView
@@ -21,123 +25,160 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
-                android:padding="@dimen/size_20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/horizontal_guideline_10"
+            <LinearLayout
+                    android:id="@+id/progress_bar_holder"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.1"
-                    android:layout_height="wrap_content"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/horizontal_guideline_90"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.9"
-                    android:layout_height="wrap_content"/>
-
-            <ImageButton
-                    android:layout_width="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/size_10"
-                    android:onClick="@{()->model.closeActivity()}"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                    android:layout_width="match_parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="@dimen/size_0"
+                    android:background="@color/gray_background"
                     android:gravity="center"
-                    android:paddingTop="@dimen/size_10"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_size_15"
-                    android:text="@string/personal_information"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="wrap_content"/>
-
-            <ImageView
-                    android:id="@+id/profile_image_view"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="@string/imageview_for_profile"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:src="@drawable/ic_girl"
-                    android:layout_marginBottom="40dp"
-                    app:layout_constraintBottom_toTopOf="@id/first_name_edit_line"
-                    app:layout_constraintTop_toTopOf="@id/horizontal_guideline_10"
-                    />
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                    android:id="@+id/first_name_edit_line"
+                <ProgressBar
+                        android:id="@+id/progress_circular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateDrawable="@drawable/gradient_progress_bar"
+                        android:indeterminateTintMode="src_in"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:hint="@string/first_name"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/last_name_edit_line"
-                    app:layout_constraintTop_toBottomOf="@id/profile_image_view"
-                    android:layout_height="wrap_content"/>
-
-            <EditText
-                    android:id="@+id/last_name_edit_line"
-                    android:layout_width="match_parent"
-                    android:hint="Last Name"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/email_edit_line"
-                    app:layout_constraintTop_toBottomOf="@id/first_name_edit_line"
-                    android:layout_height="wrap_content"/>
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                    android:id="@+id/email_edit_line"
-                    android:layout_width="match_parent"
-                    android:hint="@string/email"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/phone_number_edit_line"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/last_name_edit_line"
-                    android:layout_height="wrap_content"/>
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/horizontal_guideline_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.1" />
 
-            <EditText
-                    android:id="@+id/phone_number_edit_line"
-                    android:layout_width="match_parent"
-                    android:hint="Phone Number"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/desc_edit_line"
-                    app:layout_constraintTop_toBottomOf="@id/email_edit_line"
-                    android:layout_height="wrap_content"/>
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/horizontal_guideline_90"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.9" />
 
-            <EditText
-                    android:id="@+id/desc_edit_line"
-                    android:layout_width="match_parent"
-                    android:hint="Description About yourself like occupation,age etc"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:gravity="top"
-                    app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_90"
-                    app:layout_constraintTop_toBottomOf="@id/phone_number_edit_line"
-                    android:layout_height="wrap_content"/>
+                <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:onClick="@{()->model.closeActivity()}"
+                        android:padding="@dimen/size_10"
+                        android:src="@drawable/ic_arrow_back"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/size_10"
+                        android:text="@string/personal_information"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                        android:id="@+id/profile_image_view"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="40dp"
+                        android:contentDescription="@string/imageview_for_profile"
+                        android:src="@drawable/ic_girl"
+                        app:layout_constraintBottom_toTopOf="@id/first_name_edit_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/horizontal_guideline_10" />
+
+                <EditText
+                        android:id="@+id/first_name_edit_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/first_name"
+                        android:text="@{user.firstName}"
+                        app:layout_constraintBottom_toTopOf="@id/last_name_edit_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/profile_image_view" />
+
+                <EditText
+                        android:id="@+id/last_name_edit_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Last Name"
+                        android:text="@{user.secondName}"
+                        app:layout_constraintBottom_toTopOf="@id/email_edit_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/first_name_edit_line" />
+
+                <EditText
+                        android:id="@+id/email_edit_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/email"
+                        android:text="@{user.email}"
+                        app:layout_constraintBottom_toTopOf="@id/phone_number_edit_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/last_name_edit_line" />
+
+                <EditText
+                        android:id="@+id/phone_number_edit_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone Number"
+                        android:text="@{user.phoneNumber}"
+                        app:layout_constraintBottom_toTopOf="@id/desc_edit_line"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/email_edit_line" />
+
+                <EditText
+                        android:id="@+id/desc_edit_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:hint="Description About yourself like occupation,age etc"
+                        android:text="@{user.description}"
+                        app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_90"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/phone_number_edit_line" />
 
 
-            <Button
-                    android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_90"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="Update"
-                    android:layout_marginTop="@dimen/size_20"
-                    android:textColor="@color/white"
-                    android:onClick="@{()->model.update()}"
-                    android:textAllCaps="false"
-                    android:background="@drawable/rounded_corners_red"
-                    android:layout_height="wrap_content"/>
+                <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_20"
+                        android:background="@drawable/rounded_corners_red"
+                        android:onClick="@{()->model.update()}"
+                        android:text="Update"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_90" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
