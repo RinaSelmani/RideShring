@@ -12,8 +12,8 @@ class RidesFragmentAdapter internal constructor(fm: FragmentManager) : FragmentP
 
     override fun getItem(position: Int): Fragment {
         when (position) {
-            0 -> fragment = Rides()
-            1 -> fragment = Rides()
+            0 -> fragment = Rides("postedByMe")
+            1 -> fragment = Rides("participated")
         }
         return fragment
     }

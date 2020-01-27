@@ -9,6 +9,10 @@
                 name="v"
                 type="android.view.View"
                 />
+
+        <variable
+                name="model"
+                type="com.thesis.ridesharing.ui.home.show_rides.ShowRidesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="@dimen/size_0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

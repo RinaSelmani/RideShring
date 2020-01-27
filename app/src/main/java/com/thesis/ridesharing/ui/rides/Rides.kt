@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.RidesListFragmentBinding
+import com.thesis.ridesharing.ui.home.show_rides.ShowRidesViewModel
 
-class Rides : Fragment() {
+class Rides(val type: String) : Fragment() {
     lateinit var adapter: RideAdapter
     lateinit var binding: RidesListFragmentBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -18,7 +19,7 @@ class Rides : Fragment() {
         val mLayoutManager = LinearLayoutManager(context)
         binding.ridesRecycleview.layoutManager = mLayoutManager
         adapter = RideAdapter()
-        binding.ridesRecycleview.adapter = adapter
+        binding.model= ShowRidesViewModel(binding,adapter,type)
         return binding.root
     }
 }

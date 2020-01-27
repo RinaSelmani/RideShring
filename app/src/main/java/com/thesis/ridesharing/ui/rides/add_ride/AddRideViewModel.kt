@@ -1,24 +1,40 @@
 package com.thesis.ridesharing.ui.rides.add_ride
 
-import android.os.Handler
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.databinding.AddRideActivityBinding
+import com.thesis.ridesharing.events.CloseActivityEvent
+import com.thesis.ridesharing.events.GoogleMapsLocationEvent
+import com.thesis.ridesharing.models.Ride
+import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.models.Vehicle
 import com.thesis.ridesharing.ui.my_vehicles.MyVehiclesAdapter
+import org.greenrobot.eventbus.EventBus
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehiclesAdapter) {
 
     private var firestoreDb: FirebaseFirestore
+    val RIDE_COLLECTION = "Rides"
     val VEHICLE_COLLECTION = "Vehicles"
+    val USERS_COLLECTION = "USERS"
+    lateinit var currentUser: User
     var uid: String
-    val vehicles: MutableList<Vehicle>
+    val vehicles: MutableList<Vehicle> = mutableListOf()
+    var numberOfSeats = 0
+    var departureLatLng = com.thesis.ridesharing.models.LatLng(1.45, 3.44)
+    var arrivalLatLng = com.thesis.ridesharing.models.LatLng(3.45, 23.1)
 
     init {
-        vehicles = mutableListOf()
+        binding.progressBarHolder.visibility = View.VISIBLE
         uid = FirebaseAuth.getInstance().currentUser!!.uid
         binding.myVehiclesRecycleView.adapter = adapter
         firestoreDb = FirebaseFirestore.getInstance()
@@ -26,7 +42,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
     }
 
 
-    fun getVehicles() {
+    private fun getVehicles() {
         vehicles.clear()
         adapter.setListOfVehicles(mutableListOf())
         //binding.progressBarHolder.visibility = View.VISIBLE
@@ -48,6 +64,11 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
 
                 adapter.setListOfVehicles(vehicles)
                 binding.myVehiclesRecycleView.adapter = adapter
+                numberOfSeats = adapter.vehicles[adapter.checkedPosition].numberOfSeats - 1
+                binding.freeSeatsDescpEditText.setText(numberOfSeats.toString())
+                binding.progressBarHolder.visibility = View.GONE
+
+
 
 
             }
@@ -56,15 +77,176 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
                 Toast.makeText(binding.root.context, "An error has occured", Toast.LENGTH_SHORT)
                     .show()
                 Log.d("ERROR", it.localizedMessage.toString())
+                binding.progressBarHolder.visibility = View.GONE
+
             }
 
-        Handler().postDelayed({
-
-            binding.progressBarHolder.visibility = View.INVISIBLE
+        binding.progressBarHolder.visibility = View.GONE
 
 
-        }, 3000)
+    }
+
+    fun openGoogleMapsPlaces(type: String) {
+        EventBus.getDefault().post(GoogleMapsLocationEvent(type))
+    }
+
+    fun closeActivity() {
+        EventBus.getDefault().post(CloseActivityEvent())
+    }
+
+    fun datePicker() {
+
+        // Get Current Date
+        val c = Calendar.getInstance()
+        val mYear = c.get(Calendar.YEAR)
+        val mMonth = c.get(Calendar.MONTH)
+        val mDay = c.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            binding.root.context,
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                val date_time = "" + (monthOfYear + 1) + "/" + dayOfMonth.toString() + "/" + year
+                binding.dateEditText.setText(date_time)
+                //*************Call Time Picker Here ********************
+                timePicker()
+            }, mYear, mMonth, mDay
+        )
+        datePickerDialog.show()
+    }
+
+    fun timePicker() {
+        // Get Current Time
+        val c = Calendar.getInstance()
+        val mHour = c.get(Calendar.HOUR_OF_DAY)
+        val mMinute = c.get(Calendar.MINUTE)
+
+        // Launch Time Picker Dialog
+        val timePickerDialog = TimePickerDialog(
+            binding.root.context,
+            TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+
+                binding.timeEditText.setText("" + hourOfDay + ":" + minute)
+            }, mHour, mMinute, true
+        )
+        timePickerDialog.show()
+    }
+
+    fun setFreeSeats() {
+        showDialog(numberOfSeats - 1)
+
+    }
+
+    fun showDialog(number_of_seats: Int) {
+        val builder = AlertDialog.Builder(
+            binding.root.context,
+            com.thesis.ridesharing.R.style.AlertDialogCustom
+        )
+        builder.setTitle("Choose Seats")
+        val items = mutableListOf<String>()
+        for (i in 1..number_of_seats) {
+            items.add(i.toString())
+        }
+        var checkedItem = 0
+        builder.setSingleChoiceItems(items.toTypedArray(), checkedItem) { dialog, which ->
+            checkedItem = which
+        }
+
+        builder.setPositiveButton("OK") { dialog, which ->
+            binding.freeSeatsDescpEditText.setText(items[checkedItem])
+        }
+        builder.setNegativeButton("Cancel", null)
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    fun addRide() {
+        binding.progressBarHolder.visibility = View.VISIBLE
+        val departure = binding.departureEditText.text.toString()
+        val arrival = binding.arrivalEditText.text.toString()
+        val vehicle = adapter.vehicles[adapter.checkedPosition]
+        val price = binding.priceDescpEditText.text.toString()
+        val freeSeats = binding.freeSeatsDescpEditText.text.toString()
+        val date = binding.dateEditText.text.toString()
+        val time = binding.timeEditText.text.toString()
+        val description = binding.departureEditText.text.toString()
+        if (validateData(departure, arrival, price, freeSeats, date, time, description)) {
+
+            val pattern = "MM/dd/yyyy HH:mm:ss"
+            val dateFormated = SimpleDateFormat(pattern).parse(date+" "+time)
+            val ride = Ride(
+                riderId = uid,
+                riderProfile = User(),
+                departurePlace = departure,
+                departureLatLng = departureLatLng,
+                arrivalPlace = arrival,
+                arrivalLatLng = arrivalLatLng,
+                dateTime = dateFormated!!,
+                price = price.toDouble(),
+                passengers = mutableListOf<String>(),
+                freeSeats = freeSeats.toInt(),
+                vehicle = vehicle,
+                id = ""
+            )
+
+            val documentReference = firestoreDb.collection(RIDE_COLLECTION).document().set(ride)
+                .addOnSuccessListener {
+                    Toast.makeText(
+                        binding.root.context,
+                        "Ride added successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    binding.progressBarHolder.visibility = View.GONE
+
+                    EventBus.getDefault().post(CloseActivityEvent())
+
+                }
+                .addOnFailureListener() {
+                    binding.progressBarHolder.visibility = View.GONE
+
+                    Log.d("ERROR RIDE", it.localizedMessage)
+
+                }
+            binding.progressBarHolder.visibility = View.GONE
 
 
+        }
+    }
+
+
+    fun validateData(
+        departure: String,
+        arrival: String,
+        price: String,
+        freeSeats: String,
+        date: String,
+        time: String,
+        description: String
+    ): Boolean {
+        if (!departure.equals("") and !arrival.equals("") and !price.equals("") and
+            !freeSeats.equals("") and !date.equals("") and !time.equals("") and !description.equals(
+                ""
+            )
+        ) {
+
+            return true
+        }
+        binding.progressBarHolder.visibility = View.GONE
+
+        Toast.makeText(binding.root.context, "Fill all the data please", Toast.LENGTH_SHORT).show()
+        return false
+
+    }
+
+    fun swapDepartureAndArrival() {
+        val arrival = binding.arrivalEditText.text.toString()
+        val departure = binding.departureEditText.text.toString()
+        if (!departure.equals("") and !arrival.equals("")) {
+            binding.departureEditText.setText(arrival)
+            binding.arrivalEditText.setText(departure)
+            val swapHelper = arrivalLatLng
+            arrivalLatLng = departureLatLng
+            departureLatLng = swapHelper
+        }
     }
 }

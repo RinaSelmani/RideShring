@@ -1,5 +1,7 @@
 package com.thesis.ridesharing
 
+import java.text.SimpleDateFormat
+
 val email_pattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+"
 val car_brands = hashMapOf(
     "Audi" to arrayOf("Audi A1", "Audi A3", "Audi A5"),
@@ -11,7 +13,7 @@ val car_brands = hashMapOf(
 )
 
 val colors = arrayOf("Blue", "Red", "Black", "Yellow", "Gray", "White")
-
+val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
 fun years(): ArrayList<String> {
     val years = arrayListOf<String>()
     for (a in 1995..2020) {

@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/rounded_corners"
             android:layout_margin="@dimen/size_10"
+            android:onClick="@{(m)->model.selectOneVehicle(position)}"
             android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
@@ -157,11 +158,22 @@
                 android:id="@+id/delete_imagebutton"
                 android:layout_width="50dp"
                 android:src="@drawable/ic_delete"
-                android:onClick="@{(v)->model.deleteVehicle(position)}"
+                android:onClick="@{(m)->model.deleteVehicle(position)}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@android:color/transparent"
                 android:layout_height="50dp"/>
+
+
+        <ImageButton
+                android:id="@+id/check_imagebutton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_check_circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

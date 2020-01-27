@@ -12,6 +12,10 @@
                 name="model"
                 type="com.thesis.ridesharing.ui.rides.RideAdapter.RideItemViewModel"/>
 
+        <variable
+                name="ride"
+                type="com.thesis.ridesharing.models.Ride" />
+
 
     </data>
 
@@ -30,6 +34,13 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.3"
                 android:layout_height="match_parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_50"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/horizontal_guideline_30"
@@ -56,7 +67,7 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:text="Rina Selmani"
+                android:text="@{ride.getRiderInfo()}"
                 android:gravity="center"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +83,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/blue"
-                android:text="Pristina - Ferizaj"
+                android:text="@{ride.getArrivalAndDeparture()}"
                 app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
                 android:layout_height="wrap_content"/>
 
@@ -82,7 +93,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/blue"
-                android:text="Golf 5"
+                android:text="@{ride.getVehicleInfo()}"
                 app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_60"
                 android:layout_marginTop="@dimen/size_10"
                 android:layout_marginLeft="@dimen/size_10"
@@ -99,38 +110,38 @@
                 android:layout_height="60dp"/>
 
         <TextView
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_60"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/size_10"
+                android:text="@{ride.getRideDateAndTime()}"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="#1D2952"
-                android:text="30.05.2019 \n 22:10"
-                android:layout_marginTop="@dimen/size_10"
-                android:layout_marginLeft="20dp"
-                app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_60" />
 
         <TextView
                 android:layout_width="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_60"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="3"
+                android:text="@{ride.showFreeSeats()}"
                 android:textColor="@color/blue"
-                android:textSize="35sp"
+                android:textSize="20sp"
                 android:layout_marginRight="@dimen/size_5"
                 app:layout_constraintEnd_toStartOf="@id/seats_imageview"
                 android:layout_height="wrap_content"/>
 
         <ImageView
                 android:id="@+id/seats_imageview"
-                android:layout_width="60dp"
+                android:layout_width="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/ic_seat"
                 android:layout_marginRight="@dimen/size_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_60"
-                android:layout_height="60dp"/>
+                android:layout_height="30dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

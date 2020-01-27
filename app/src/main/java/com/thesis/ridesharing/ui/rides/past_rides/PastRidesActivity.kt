@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.PastRidesActivityBinding
-import com.thesis.ridesharing.ui.home.RidesFragment
+import com.thesis.ridesharing.ui.home.show_rides.RidesFragment
 
 
 class PastRidesActivity : AppCompatActivity() {
@@ -20,7 +20,9 @@ class PastRidesActivity : AppCompatActivity() {
 
     private fun open_rides_fragment() {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.rides_container, RidesFragment())
+        transaction.replace(R.id.rides_container,
+            RidesFragment()
+        )
         transaction.commit()
     }
 

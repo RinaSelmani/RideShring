@@ -21,7 +21,7 @@
                 />
     </fragment>
     <fragment android:id="@+id/ridesFragment2"
-              android:name="com.thesis.ridesharing.ui.home.RidesFragment"
+              android:name="com.thesis.ridesharing.ui.home.show_rides.RidesFragment"
               android:label="rides"
             >
         <action android:id="@+id/profile_action"

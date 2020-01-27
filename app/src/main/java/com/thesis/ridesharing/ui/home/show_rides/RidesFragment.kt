@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.ui.home
+package com.thesis.ridesharing.ui.home.show_rides
 
 import android.os.Bundle
 import android.view.LayoutInflater

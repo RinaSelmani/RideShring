@@ -14,9 +14,6 @@
                 type="com.thesis.ridesharing.ui.rides.add_ride.AddRideViewModel" />
     </data>
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,29 +22,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-            <LinearLayout
-                    android:id="@+id/progress_bar_holder"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_0"
-                    android:background="@color/gray_background"
-                    android:gravity="center"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                <ProgressBar
-                        android:id="@+id/progress_circular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminateDrawable="@drawable/gradient_progress_bar"
-                        android:indeterminateTintMode="src_in"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-            </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/horizontal_guideline_10"
@@ -74,202 +48,321 @@
                     android:layout_marginLeft="@dimen/size_10"
                     android:background="@android:color/transparent"
                     android:padding="@dimen/size_10"
+                    android:onClick="@{()->model.closeActivity()}"
                     android:backgroundTint="@color/white"
                     android:src="@drawable/ic_arrow_back_white"
                     app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/size_10"
-                    android:padding="@dimen/size_10"
-                    android:background="@drawable/rounded_white_corners"
+                    android:layout_height="@dimen/size_0"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10">
 
-                <EditText
-                        android:id="@+id/departure_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/size_10"
-                        android:background="@drawable/rounded_border_corners"
-                        android:hint="From*"
-                        android:padding="@dimen/size_10"
-                        android:textColorHint="@color/colorPrimary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                        android:id="@+id/swipe_image_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/size_10"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/ic_swap_calls_black_24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/departure_edit_text" />
-
-                <EditText
-                        android:id="@+id/arrival_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/size_5"
-                        android:background="@drawable/rounded_border_corners"
-                        android:hint="To*"
-                        android:padding="@dimen/size_10"
-                        android:textColorHint="@color/colorPrimary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/swipe_image_button" />
-
-
-                <View
-                        android:id="@+id/seperator_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/size_20"
-                        android:background="@color/colorPrimary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/arrival_edit_text" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/my_vehicles_recycle_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="@dimen/size_5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/seperator_view" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/price_and_seats_container"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/my_vehicles_recycle_view">
+                        app:layout_constraintStart_toStartOf="parent">
 
-                    <androidx.constraintlayout.widget.Guideline
-                            android:id="@+id/inner_vertical_guideline_50"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            app:layout_constraintGuide_percent=".5" />
-
-                    <TextView
-                            android:id="@+id/price_text_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/price"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/text_size_15"
-                            app:layout_constraintEnd_toStartOf="@id/inner_vertical_guideline_50"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                            android:id="@+id/free_seats_text_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Free Seats*"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/text_size_15"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <EditText
-                            android:id="@+id/free_seats_descp_text_view"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/size_20"
-                            android:background="@drawable/rounded_blue_border_colors"
-                            android:drawableRight="@drawable/ic_arrow_drop_down_blue"
-                            android:gravity="center"
+                            android:layout_margin="@dimen/size_10"
+                            android:background="@drawable/rounded_white_corners"
                             android:padding="@dimen/size_10"
-                            android:text="6"
-                            android:textColor="@color/blue"
-                            android:textSize="@dimen/text_size_15"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
-                            app:layout_constraintTop_toBottomOf="@id/free_seats_text_view" />
-
-                    <EditText
-                            android:id="@+id/price_descp_text_view"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/size_20"
-                            android:background="@drawable/rounded_blue_border_colors"
-                            android:drawableRight="@drawable/ic_euro"
-                            android:gravity="center"
-                            android:padding="@dimen/size_10"
-                            android:text="0.0"
-                            android:textColor="@color/blue"
-                            android:textSize="@dimen/text_size_15"
-                            app:layout_constraintEnd_toStartOf="@id/inner_vertical_guideline_50"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/price_text_view" />
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        <EditText
+                                android:id="@+id/departure_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_10"
+                                android:background="@drawable/rounded_border_corners"
+                                android:focusable="false"
+                                android:hint="From*"
+                                android:onClick="@{(p)->model.openGoogleMapsPlaces(`departure`)}"
+                                android:padding="@dimen/size_10"
+                                android:textColorHint="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageButton
+                                android:id="@+id/swipe_image_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_10"
+                                android:background="@android:color/transparent"
+                                android:onClick="@{()->model.swapDepartureAndArrival()}"
+                                android:padding="@dimen/size_10"
+                                android:src="@drawable/ic_swap_calls_black_24dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/departure_edit_text" />
+
+                        <EditText
+                                android:id="@+id/arrival_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_5"
+                                android:background="@drawable/rounded_border_corners"
+                                android:focusable="false"
+                                android:hint="To*"
+                                android:onClick="@{(p)->model.openGoogleMapsPlaces(`arrival`)}"
+                                android:padding="@dimen/size_10"
+                                android:textColorHint="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/swipe_image_button" />
+
+
+                        <View
+                                android:id="@+id/seperator_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:background="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/arrival_edit_text" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/my_vehicles_recycle_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="@dimen/size_5"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/seperator_view" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/price_and_seats_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/my_vehicles_recycle_view">
+
+                            <androidx.constraintlayout.widget.Guideline
+                                    android:id="@+id/inner_vertical_guideline_50"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    app:layout_constraintGuide_percent=".5" />
+
+                            <TextView
+                                    android:id="@+id/price_text_view"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/price"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/text_size_15"
+                                    app:layout_constraintEnd_toStartOf="@id/inner_vertical_guideline_50"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                    android:id="@+id/free_seats_text_view"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Free Seats*"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/text_size_15"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <EditText
+                                    android:id="@+id/free_seats_descp_edit_text"
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/size_20"
+                                    android:background="@drawable/rounded_blue_border_colors"
+                                    android:drawableRight="@drawable/ic_arrow_drop_down_blue"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:onClick="@{()->model.setFreeSeats()}"
+                                    android:padding="@dimen/size_10"
+                                    android:textColor="@color/blue"
+                                    android:textSize="@dimen/text_size_15"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
+                                    app:layout_constraintTop_toBottomOf="@id/free_seats_text_view" />
+
+                            <EditText
+                                    android:id="@+id/price_descp_edit_text"
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/size_20"
+                                    android:background="@drawable/rounded_blue_border_colors"
+                                    android:drawableRight="@drawable/ic_euro"
+                                    android:gravity="center"
+                                    android:hint="0.0"
+                                    android:inputType="numberDecimal"
+                                    android:padding="@dimen/size_10"
+                                    android:text="3.5"
+                                    android:textColor="@color/blue"
+                                    android:textSize="@dimen/text_size_15"
+                                    app:layout_constraintEnd_toStartOf="@id/inner_vertical_guideline_50"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/price_text_view" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                                android:id="@+id/second_seperator_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:background="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/price_and_seats_container" />
+
+                        <TextView
+                                android:id="@+id/date_text_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_10"
+                                android:gravity="center"
+                                android:text="@string/date_and_time"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size_15"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/second_seperator_view" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/vertical_guideline_50"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintGuide_percent=".5" />
+
+                        <EditText
+                                android:id="@+id/date_edit_text"
+                                android:layout_width="@dimen/size_0"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_10"
+                                android:background="@drawable/rounded_blue_border_colors"
+                                android:drawableRight="@drawable/ic_date"
+                                android:focusable="false"
+                                android:gravity="center"
+                                android:hint="dd/mm/yyyy"
+                                android:onClick="@{()->model.datePicker()}"
+                                android:padding="@dimen/size_5"
+                                android:textColor="@color/blue"
+                                android:textColorHint="@color/blue"
+                                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/date_text_text_view" />
+
+                        <EditText
+                                android:id="@+id/time_edit_text"
+                                android:layout_width="@dimen/size_0"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_10"
+                                android:background="@drawable/rounded_blue_border_colors"
+                                android:drawableRight="@drawable/ic_access_time"
+                                android:focusable="false"
+                                android:gravity="center"
+                                android:hint="hh:mm"
+                                android:onClick="@{()->model.timePicker()}"
+                                android:padding="@dimen/size_5"
+                                android:textColor="@color/blue"
+                                android:textColorHint="@color/blue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                                app:layout_constraintTop_toBottomOf="@id/date_text_text_view" />
+
+                        <View
+                                android:id="@+id/third_seperator_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/size_20"
+                                android:background="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/date_edit_text" />
+
+                        <TextView
+                                android:id="@+id/ride_decp_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
+                                android:gravity="center"
+                                android:text="@string/description_about_the_ride"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size_15"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/third_seperator_view" />
+
+                        <EditText
+                                android:id="@+id/ride_decp_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:background="@drawable/rounded_blue_border_colors"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/ride_decp_text_view" />
+
+                        <Button
+                                android:id="@+id/past_rides_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_20"
+                                android:background="@drawable/rounded_corners_red"
+                                android:gravity="center"
+                                android:onClick="@{()->model.addRide()}"
+                                android:padding="@dimen/size_20"
+                                android:text="@string/add_ride"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/ride_decp_edit_text" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                            android:id="@+id/progress_bar_holder"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_0"
+                            android:background="@color/gray_background"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        <ProgressBar
+                                android:id="@+id/progress_circular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:indeterminateDrawable="@drawable/gradient_progress_bar"
+                                android:indeterminateTintMode="src_in"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <View
-                        android:id="@+id/second_seperator_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="@dimen/size_20"
-                        android:background="@color/colorPrimary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/price_and_seats_container" />
-
-                <TextView
-                        android:id="@+id/ride_decp_text_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_10"
-                        android:layout_marginBottom="@dimen/size_10"
-                        android:gravity="center"
-                        android:text="@string/description_about_the_ride"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_size_15"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/second_seperator_view" />
-
-                <EditText
-                        android:id="@+id/ride_decp_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:background="@drawable/rounded_blue_border_colors"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ride_decp_text_view" />
-
-                <Button
-                        android:id="@+id/past_rides_text_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/size_20"
-                        android:background="@drawable/rounded_corners_red"
-                        android:gravity="center"
-                        android:padding="@dimen/size_20"
-                        android:text="@string/add_ride"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ride_decp_edit_text" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
 
 </layout>
