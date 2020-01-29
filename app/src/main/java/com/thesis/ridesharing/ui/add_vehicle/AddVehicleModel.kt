@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.databinding.AddVehicleActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
@@ -31,6 +30,7 @@ class AddVehicleModel(val binding: AddVehicleActivityBinding) {
             val yearOfProductionText = binding.yearOfProductionEditText.text.toString()
             val numberOfSeats = binding.seatsEditText.text.toString().toInt()
             val vehicle = Vehicle(
+                vehicleId = "",
                 brand = brandText,
                 model = modelText,
                 color = colorText,
@@ -38,50 +38,24 @@ class AddVehicleModel(val binding: AddVehicleActivityBinding) {
                 numberOfSeats = numberOfSeats
             )
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
-            val documentReference = firestoreDb.collection(VEHICLE_COLLECTION).document(uid)
-            documentReference.get().addOnSuccessListener {
-                if (it.exists()) {
-                    documentReference.update(
-                        "VehicleArray",
-                        FieldValue.arrayUnion(vehicle)
-                    )
-                        .addOnSuccessListener {
-                            Toast.makeText(
-                                binding.root.context,
-                                "Vehicle Saved",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            EventBus.getDefault().post(CloseActivityEvent())
-
-                        }
-                        .addOnFailureListener {
-                            Log.d(SAVE_VEHICLE_ERROR, it.localizedMessage)
-                        }
-
-                } else {
-                    val myVehicle = HashMap<String, List<Vehicle>>()
-                    myVehicle["VehicleArray"] = listOf(vehicle)
-                    documentReference.set(myVehicle).addOnSuccessListener {
-                        Toast.makeText(
-                            binding.root.context,
-                            "Vehicle Saved",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        EventBus.getDefault().post(CloseActivityEvent())
-
-                    }
-                        .addOnFailureListener() {
-                            Log.d(SAVE_VEHICLE_ERROR, it.localizedMessage)
-                        }
-
+            val documentReference =
+                firestoreDb.collection(VEHICLE_COLLECTION).document(uid).collection(uid)
+                    .add(vehicle).addOnSuccessListener {
+                    Toast.makeText(binding.root.context, "Vehicle Saved", Toast.LENGTH_SHORT).show()
+                    EventBus.getDefault().post(CloseActivityEvent())
 
                 }
+                    .addOnFailureListener {
+                        Log.d(SAVE_VEHICLE_ERROR, it.localizedMessage)
+
+                    }
+
             }
             binding.progressBarHolder.visibility = View.INVISIBLE
 
         }
 
-    }
+
 
     fun validateData(): Boolean {
         val brandHint = binding.brandEditText.text.toString()

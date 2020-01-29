@@ -6,9 +6,8 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.databinding.RidesListFragmentBinding
 import com.thesis.ridesharing.models.Ride
-import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.ui.rides.RideAdapter
-import java.text.SimpleDateFormat
+import java.util.*
 
 class ShowRidesViewModel(
     val binding: RidesListFragmentBinding,
@@ -28,11 +27,16 @@ class ShowRidesViewModel(
             "postedByMe" -> {
                 getMyRides()
             }
+            "archivedPostedByMe" -> {
+                getMyArchivedRides()
+
+            }
         }
     }
 
-    private fun getMyRides() {
-        firestoreDb.collection(RIDE_COLLECTION).whereEqualTo("riderId", uid).get()
+    private fun getMyArchivedRides() {
+        val time = Date()
+        firestoreDb.collection(RIDE_COLLECTION).whereLessThan("dateTime", time).get()
             .addOnSuccessListener {
                 val documents: List<DocumentSnapshot> = it.documents
                 val listOfRides = mutableListOf<Ride>()
@@ -43,20 +47,39 @@ class ShowRidesViewModel(
                         ride!!.id = id
                         listOfRides.add(ride)
 
-                        Log.d("DATETIME", ride.dateTime.toString())
-                        firestoreDb.collection("USERS").document(uid).get().addOnSuccessListener {
-                            if (it != null) {
-                                val user = it.toObject(User::class.java)
-                                ride.riderProfile = user!!
+                    }
 
-                            }
-                        }
+                }
+                Log.d("SIZEOF LIST", listOfRides.size.toString())
+                adapter.setRidesList(listOfRides)
+                binding.ridesRecycleview.adapter = adapter
+                Log.d("SIZE", listOfRides.size.toString())
+
+            }
+            .addOnFailureListener {
+                Log.d("ERORr", it.localizedMessage)
+
+            }
+    }
+
+    private fun getMyRides() {
+        val time = Date()
+        firestoreDb.collection(RIDE_COLLECTION).whereGreaterThanOrEqualTo("dateTime", time).get()
+            .addOnSuccessListener {
+                val documents: List<DocumentSnapshot> = it.documents
+                val listOfRides = mutableListOf<Ride>()
+                for (d in documents) {
+                    if (d.exists() and (d["riderId"].toString() == uid)) {
+                        val id = d.id
+                        val ride: Ride? = d.toObject(Ride::class.java)
+                        ride!!.id = id
+                        listOfRides.add(ride)
+
                     }
 
                 }
                 adapter.setRidesList(listOfRides)
                 binding.ridesRecycleview.adapter = adapter
-                Log.d("SIZE", listOfRides.size.toString())
 
             }
             .addOnFailureListener {

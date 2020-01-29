@@ -21,7 +21,7 @@ class PastRidesActivity : AppCompatActivity() {
     private fun open_rides_fragment() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.rides_container,
-            RidesFragment()
+            RidesFragment("Archived")
         )
         transaction.commit()
     }

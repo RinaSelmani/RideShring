@@ -7,15 +7,17 @@ class Ride(
     var riderId: String,
     var riderProfile: User,
     var departurePlace: String,
-    var departureLatLng: com.thesis.ridesharing.models.LatLng,
+    var departureLatLng: LatLng,
     var arrivalPlace: String,
-    val arrivalLatLng: com.thesis.ridesharing.models.LatLng,
+    val arrivalLatLng: LatLng,
     var dateTime: Date,
     val price: Double,
     val passengers: MutableList<String>,
     val freeSeats: Int,
     val vehicle: Vehicle,
-    var id: String
+    var id: String,
+    val departureAndArrivalAndDate: String,
+    val departureAndArrival: String
 ) {
 
 
@@ -31,7 +33,7 @@ class Ride(
         mutableListOf<String>(),
         0,
         Vehicle(),
-        ""
+        "", "", ""
     )
 
     fun showFreeSeats(): String {
@@ -50,7 +52,7 @@ class Ride(
         return vehicle.getBrandAndModel()
     }
 
-    fun getRideDateAndTime(): String {
+    fun getRideTimeAndDate(): String {
         val format = SimpleDateFormat("dd/MM/yyyy hh:mm")
         return format.format(dateTime)
     }

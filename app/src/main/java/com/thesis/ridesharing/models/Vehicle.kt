@@ -1,6 +1,7 @@
 package com.thesis.ridesharing.models
 
 class Vehicle(
+    var vehicleId: String,
     val brand: String,
     val model: String,
     val color: String,
@@ -8,7 +9,9 @@ class Vehicle(
     val numberOfSeats: Int
 ) {
 
-    constructor() : this("", "", "", "", 0)
+    constructor() : this(
+        "", "", "", "", "", 0
+    )
 
     fun getBrandAndModel(): String {
         return brand + " " + model

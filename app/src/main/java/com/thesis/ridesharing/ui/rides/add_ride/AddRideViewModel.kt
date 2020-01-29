@@ -28,10 +28,10 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
     val USERS_COLLECTION = "USERS"
     lateinit var currentUser: User
     var uid: String
-    val vehicles: MutableList<Vehicle> = mutableListOf()
     var numberOfSeats = 0
     var departureLatLng = com.thesis.ridesharing.models.LatLng(1.45, 3.44)
     var arrivalLatLng = com.thesis.ridesharing.models.LatLng(3.45, 23.1)
+    var user = User()
 
     init {
         binding.progressBarHolder.visibility = View.VISIBLE
@@ -39,30 +39,24 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
         binding.myVehiclesRecycleView.adapter = adapter
         firestoreDb = FirebaseFirestore.getInstance()
         getVehicles()
+        getUser()
     }
 
 
     private fun getVehicles() {
-        vehicles.clear()
+        val myVehicles: MutableList<Vehicle> = mutableListOf()
         adapter.setListOfVehicles(mutableListOf())
-        //binding.progressBarHolder.visibility = View.VISIBLE
-        firestoreDb.collection(VEHICLE_COLLECTION).document(uid).get().addOnSuccessListener {
-            if (it.exists()) {
-                val res = it.get("VehicleArray")!!
-                val test = res as ArrayList<HashMap<String, String>>
+        binding.progressBarHolder.visibility = View.VISIBLE
+        firestoreDb.collection(VEHICLE_COLLECTION).document(uid).collection(uid).get()
+            .addOnSuccessListener {
 
-                for (i in test) {
-                    val vehicle = Vehicle(
-                        brand = i["brand"].toString(),
-                        model = i["model"].toString(),
-                        color = i["color"].toString(),
-                        yearOfProduction = i["yearOfProduction"].toString(),
-                        numberOfSeats = i["numberOfSeats"].toString().toInt()
-                    )
-                    vehicles.add(vehicle)
+                for (i in it.documents) {
+                    val vehicle = i.toObject(Vehicle::class.java)
+                    vehicle?.vehicleId = i.id
+                    myVehicles.add(vehicle!!)
                 }
 
-                adapter.setListOfVehicles(vehicles)
+                adapter.setListOfVehicles(myVehicles)
                 binding.myVehiclesRecycleView.adapter = adapter
                 numberOfSeats = adapter.vehicles[adapter.checkedPosition].numberOfSeats - 1
                 binding.freeSeatsDescpEditText.setText(numberOfSeats.toString())
@@ -72,7 +66,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
 
 
             }
-        }
+
             .addOnFailureListener {
                 Toast.makeText(binding.root.context, "An error has occured", Toast.LENGTH_SHORT)
                     .show()
@@ -86,6 +80,19 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
 
     }
 
+
+    fun getUser() {
+        val firestoreDb = FirebaseFirestore.getInstance()
+        firestoreDb.collection(USERS_COLLECTION).document(uid).get().addOnSuccessListener {
+            if (it != null) {
+                binding.progressBarHolder.visibility = View.GONE
+                user = it.toObject(User::class.java)!!
+
+            }
+
+        }
+
+    }
     fun openGoogleMapsPlaces(type: String) {
         EventBus.getDefault().post(GoogleMapsLocationEvent(type))
     }
@@ -124,8 +131,12 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
         val timePickerDialog = TimePickerDialog(
             binding.root.context,
             TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                var hour = hourOfDay.toString()
+                if (hour.length == 1) {
+                    hour = "0" + hour.toString()
+                }
 
-                binding.timeEditText.setText("" + hourOfDay + ":" + minute)
+                binding.timeEditText.setText(hour + ":" + minute.toString())
             }, mHour, mMinute, true
         )
         timePickerDialog.show()
@@ -172,24 +183,26 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
         val description = binding.departureEditText.text.toString()
         if (validateData(departure, arrival, price, freeSeats, date, time, description)) {
 
-            val pattern = "MM/dd/yyyy HH:mm:ss"
+            val pattern = "MM/dd/yyyy HH:mm"
             val dateFormated = SimpleDateFormat(pattern).parse(date+" "+time)
             val ride = Ride(
                 riderId = uid,
-                riderProfile = User(),
+                riderProfile = user,
                 departurePlace = departure,
                 departureLatLng = departureLatLng,
                 arrivalPlace = arrival,
                 arrivalLatLng = arrivalLatLng,
                 dateTime = dateFormated!!,
                 price = price.toDouble(),
-                passengers = mutableListOf<String>(),
+                passengers = mutableListOf(),
                 freeSeats = freeSeats.toInt(),
                 vehicle = vehicle,
-                id = ""
+                id = "",
+                departureAndArrivalAndDate = departure + " " + arrival + " " + date,
+                departureAndArrival = departure+" "+arrival
             )
 
-            val documentReference = firestoreDb.collection(RIDE_COLLECTION).document().set(ride)
+            firestoreDb.collection(RIDE_COLLECTION).document().set(ride)
                 .addOnSuccessListener {
                     Toast.makeText(
                         binding.root.context,
