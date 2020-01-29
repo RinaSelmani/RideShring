@@ -10,9 +10,11 @@ import com.thesis.ridesharing.databinding.LoginActivityBinding
 import com.thesis.ridesharing.email_pattern
 import com.thesis.ridesharing.events.OpenActivityEvent
 import com.thesis.ridesharing.ui.register.RegisterActivity
+import com.thesis.ridesharing.ui.reset_password.ResetPasswordActivity
 import org.greenrobot.eventbus.EventBus
 
-class LoginModel(val binding: LoginActivityBinding) {
+class
+LoginModel(val binding: LoginActivityBinding) {
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
     val LOGIN_ERORR = "LOGIN ERROR"
@@ -60,6 +62,11 @@ class LoginModel(val binding: LoginActivityBinding) {
 
     fun openRegisterActivity() {
         EventBus.getDefault().post(OpenActivityEvent(RegisterActivity()))
+
+    }
+
+    fun openResetLinkActivity() {
+        EventBus.getDefault().post(OpenActivityEvent(ResetPasswordActivity()))
 
     }
 

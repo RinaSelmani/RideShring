@@ -148,6 +148,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
     }
 
     fun showDialog(number_of_seats: Int) {
+
         val builder = AlertDialog.Builder(
             binding.root.context,
             com.thesis.ridesharing.R.style.AlertDialogCustom

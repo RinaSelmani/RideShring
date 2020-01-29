@@ -119,8 +119,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/colorPrimary"
-                    android:text="@string/forgot_password"
+                    android:text="@string/reset_pass"
                     android:layout_marginLeft="@dimen/size_5"
+                    android:onClick="@{()->model.openResetLinkActivity()}"
                     android:layout_marginTop="@dimen/size_5"
                     app:layout_constraintTop_toBottomOf="@id/login_button"
                     android:layout_height="wrap_content"/>

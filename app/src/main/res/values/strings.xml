@@ -33,4 +33,5 @@
     <string name="add_ride">Add Ride</string>
     <string name="date_and_time">Date and Time</string>
     <string name="google_key_api">AIzaSyA8koAEsGGu7jD2ieVasIOKczJGdSFe45E</string>
+    <string name="reset_pass">Reset Password</string>
 </resources>

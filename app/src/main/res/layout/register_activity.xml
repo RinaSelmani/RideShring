@@ -77,6 +77,17 @@
                         app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
                         android:layout_height="wrap_content"/>
 
+                <ImageButton
+                        android:layout_width="16dp"
+                        android:onClick="@{()->model.closeActivity()}"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:src="@drawable/ic_arrow_back"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
+                        android:layout_height="21dp"/>
+
 
                 <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/horizontal_guideline_90"

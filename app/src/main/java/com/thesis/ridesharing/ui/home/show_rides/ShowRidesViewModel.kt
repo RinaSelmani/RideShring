@@ -31,6 +31,13 @@ class ShowRidesViewModel(
                 getMyArchivedRides()
 
             }
+            "participated" -> {
+                getParticipatedRides()
+            }
+            "archivedParticipated" -> {
+                myArchivedParticipatedRides()
+
+            }
         }
     }
 
@@ -41,7 +48,7 @@ class ShowRidesViewModel(
                 val documents: List<DocumentSnapshot> = it.documents
                 val listOfRides = mutableListOf<Ride>()
                 for (d in documents) {
-                    if (d.exists()) {
+                    if (d.exists() and (d["riderId"].toString() == uid)) {
                         val id = d.id
                         val ride: Ride? = d.toObject(Ride::class.java)
                         ride!!.id = id
@@ -60,6 +67,39 @@ class ShowRidesViewModel(
                 Log.d("ERORr", it.localizedMessage)
 
             }
+    }
+
+    private fun myArchivedParticipatedRides() {
+        val time = Date()
+        firestoreDb.collection(RIDE_COLLECTION).whereLessThan("dateTime", time).get()
+            .addOnSuccessListener {
+                val documents: List<DocumentSnapshot> = it.documents
+                val listOfRides = mutableListOf<Ride>()
+                for (d in documents) {
+                    if (d.exists()) {
+                        val passenger: MutableList<String> = d["passengers"] as MutableList<String>
+                        if (uid in passenger) {
+                            val id = d.id
+                            val ride: Ride? = d.toObject(Ride::class.java)
+                            ride!!.id = id
+                            listOfRides.add(ride)
+
+                        }
+
+                    }
+
+                }
+                Log.d("SIZEOF LIST", listOfRides.size.toString())
+                adapter.setRidesList(listOfRides)
+                binding.ridesRecycleview.adapter = adapter
+                Log.d("SIZE", listOfRides.size.toString())
+
+            }
+            .addOnFailureListener {
+                Log.d("ERORr", it.localizedMessage)
+
+            }
+
     }
 
     private fun getMyRides() {
@@ -86,5 +126,35 @@ class ShowRidesViewModel(
                 Log.d("ERORr", it.localizedMessage)
 
             }
+    }
+
+    fun getParticipatedRides() {
+        val time = Date()
+        firestoreDb.collection(RIDE_COLLECTION).whereGreaterThanOrEqualTo("dateTime", time).get()
+            .addOnSuccessListener {
+                val documents: List<DocumentSnapshot> = it.documents
+                val listOfRides = mutableListOf<Ride>()
+                for (d in documents) {
+                    val passenger: MutableList<String> = d["passengers"] as MutableList<String>
+                    if (d.exists()) {
+                        if (uid in passenger) {
+                            val id = d.id
+                            val ride: Ride? = d.toObject(Ride::class.java)
+                            ride!!.id = id
+                            listOfRides.add(ride)
+
+                        }
+                    }
+
+                }
+                adapter.setRidesList(listOfRides)
+                binding.ridesRecycleview.adapter = adapter
+
+            }
+            .addOnFailureListener {
+                Log.d("ERORr", it.localizedMessage)
+
+            }
+
     }
 }

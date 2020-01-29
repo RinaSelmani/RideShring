@@ -14,6 +14,7 @@ import com.thesis.ridesharing.models.Ride
 import com.thesis.ridesharing.ui.rides.RideAdapter
 import org.greenrobot.eventbus.EventBus
 import java.util.*
+import kotlin.collections.HashMap
 
 class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapter) {
 
@@ -27,6 +28,8 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
         firestoreDb = FirebaseFirestore.getInstance()
         uid = FirebaseAuth.getInstance().currentUser!!.uid
         binding.progressBarHolder.visibility = View.VISIBLE
+        adapter.isSearchRide = true
+        adapter.currentUserId = uid
         getAllRides()
     }
 
@@ -82,6 +85,47 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
             }
     }
 
+    fun reserveRide(
+        rideId: String,
+        numberOfFreeSeats: Int,
+        passangers: MutableList<String>
+    ) {
+        val updateHashMap = HashMap<String, Any>()
+        updateHashMap["freeSeats"] = numberOfFreeSeats - 1
+        updateHashMap["passengers"] = passangers
+        firestoreDb.collection(RIDE_COLLECTION).document(rideId)
+            .update(updateHashMap).addOnSuccessListener {
+                Log.d("UPDATERIDE", "GOOD")
+
+            }
+            .addOnFailureListener {
+                Log.d("UPDATERIDE", "BADD ${it.localizedMessage}")
+            }
+
+
+    }
+
+
+    fun cancelRide(
+        rideId: String,
+        numberOfFreeSeats: Int,
+        passangers: MutableList<String>
+    ) {
+        val updateHashMap = HashMap<String, Any>()
+        updateHashMap["freeSeats"] = numberOfFreeSeats + 1
+        updateHashMap["passengers"] = passangers
+        firestoreDb.collection(RIDE_COLLECTION).document(rideId)
+            .update(updateHashMap).addOnSuccessListener {
+                Log.d("UPDATERIDE", "GOOD")
+
+            }
+            .addOnFailureListener {
+                Log.d("UPDATERIDE", "BADD ${it.localizedMessage}")
+            }
+
+
+    }
+
     fun resetSearch() {
         adapter.setRidesList(initialRidesList)
         binding.ridesRecycleview.adapter = adapter
@@ -132,6 +176,7 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
             }
 
     }
+    //TODO make sure to return from search with date from now and on
 
     private fun serachByAllParams(departure: String, arrival: String, date: String) {
         val departureAndArrivalAndDate = "$departure $arrival $date"

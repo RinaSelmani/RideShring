@@ -4,12 +4,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.MainActivity
 import com.thesis.ridesharing.databinding.RegisterActivityBinding
 import com.thesis.ridesharing.email_pattern
+import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
 import com.thesis.ridesharing.models.User
 import org.greenrobot.eventbus.EventBus
@@ -51,6 +51,7 @@ class RegisterModel(val binding: RegisterActivityBinding) {
                 if (it.isSuccessful) {
                     val currentUserId = mAuth!!.currentUser!!.uid.toString().replace("/", "")
                     val firestoreDb = FirebaseFirestore.getInstance()
+                    verifyEmail()
                     val user =
                         User(
                             first_name,
@@ -106,6 +107,22 @@ class RegisterModel(val binding: RegisterActivityBinding) {
             .show()
 
         return false
+    }
+
+    fun closeActivity() {
+        EventBus.getDefault().post(CloseActivityEvent())
+    }
+
+    fun verifyEmail() {
+        FirebaseAuth.getInstance().currentUser!!.sendEmailVerification().addOnSuccessListener {
+            Toast.makeText(
+                binding.root.context,
+                "An email to verify your account was sent to your email address",
+                Toast.LENGTH_LONG
+            ).show()
+
+        }
+
     }
 
 }

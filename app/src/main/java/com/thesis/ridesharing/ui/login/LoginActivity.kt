@@ -38,5 +38,10 @@ class LoginActivity : AppCompatActivity() {
         EventBus.getDefault().unregister(this)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
+
 
 }

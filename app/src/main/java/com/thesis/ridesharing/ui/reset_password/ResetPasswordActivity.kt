@@ -1,23 +1,21 @@
-package com.thesis.ridesharing.ui.register
+package com.thesis.ridesharing.ui.reset_password
 
-import android.content.Intent
+import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.thesis.ridesharing.R
-import com.thesis.ridesharing.databinding.RegisterActivityBinding
+import com.thesis.ridesharing.databinding.ResetPasswordActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
-import com.thesis.ridesharing.events.OpenActivityEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class RegisterActivity : AppCompatActivity() {
+class ResetPasswordActivity : Activity() {
+    lateinit var binding: ResetPasswordActivityBinding
 
-    lateinit var binding: RegisterActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.register_activity)
-        binding.model = RegisterModel(binding)
+        binding = DataBindingUtil.setContentView(this, R.layout.reset_password_activity)
+        binding.model = ResetPasswordViewModel(binding)
     }
 
     public override fun onStart() {
@@ -34,12 +32,4 @@ class RegisterActivity : AppCompatActivity() {
     fun event(closeActivityEvent: CloseActivityEvent) {
         onBackPressed()
     }
-
-    @Subscribe
-    fun event(openActivityEvent: OpenActivityEvent) {
-        val intent = Intent(this, openActivityEvent.activity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
 }

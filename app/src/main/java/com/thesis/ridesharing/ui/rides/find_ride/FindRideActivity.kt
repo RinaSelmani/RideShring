@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.libraries.places.api.Places
@@ -17,7 +16,8 @@ import com.thesis.ridesharing.databinding.FindRideActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.GoogleMapsLocationEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
-import com.thesis.ridesharing.models.LatLng
+import com.thesis.ridesharing.models.CancelReservationEvent
+import com.thesis.ridesharing.models.ReserveRideEvent
 import com.thesis.ridesharing.ui.rides.RideAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -62,6 +62,25 @@ class FindRideActivity : Activity() {
         val intent = Intent(this, openActivityEvent.activity::class.java)
         startActivity(intent)
     }
+
+    @Subscribe
+    fun event(reserveRideEvent: ReserveRideEvent) {
+        binding.model!!.reserveRide(
+            rideId = reserveRideEvent.rideId,
+            numberOfFreeSeats = reserveRideEvent.numberOfFreeSeats,
+            passangers = reserveRideEvent.passangers
+        )
+    }
+
+    @Subscribe
+    fun event(cancelReservationEvent: CancelReservationEvent) {
+        binding.model!!.cancelRide(
+            rideId = cancelReservationEvent.rideId,
+            numberOfFreeSeats = cancelReservationEvent.numberOfFreeSeats,
+            passangers = cancelReservationEvent.passangers
+        )
+    }
+
 
     @Subscribe
     fun event(closeActivityEvent: CloseActivityEvent) {

@@ -60,6 +60,7 @@
         <activity android:name=".ui.rides.find_ride.FindRideActivity"/>
         <activity android:name=".ui.rides.ride_detail.RideDetailActivity"/>
         <activity android:name=".ui.rides.add_ride.AddRideActivity"/>
+        <activity android:name=".ui.reset_password.ResetPasswordActivity"/>
 
 
 
