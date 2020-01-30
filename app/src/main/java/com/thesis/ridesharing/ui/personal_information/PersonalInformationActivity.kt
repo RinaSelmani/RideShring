@@ -6,10 +6,11 @@ import androidx.databinding.DataBindingUtil
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.PersonalInformationActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
+import com.thesis.ridesharing.models.User
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-class PersonalInformationActivity : Activity() {
+class PersonalInformationActivity() : Activity() {
     lateinit var binding: PersonalInformationActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

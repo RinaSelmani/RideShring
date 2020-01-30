@@ -34,4 +34,7 @@
     <string name="date_and_time">Date and Time</string>
     <string name="google_key_api">AIzaSyA8koAEsGGu7jD2ieVasIOKczJGdSFe45E</string>
     <string name="reset_pass">Reset Password</string>
+    <string name="participating_rides">Participating Rides</string>
+    <string name="posted_rides">Posted Rides</string>
+    <string name="passengers">Passengers</string>
 </resources>

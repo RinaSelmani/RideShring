@@ -36,9 +36,10 @@ LoginModel(val binding: LoginActivityBinding) {
                 .addOnFailureListener() {
                     Toast.makeText(
                         binding.root.context,
-                        "Please Check you login info",
+                        "Please Check your login info",
                         Toast.LENGTH_LONG
                     ).show()
+                    binding.progressBarHolder.visibility = View.GONE
                     Log.d(LOGIN_ERORR,it.localizedMessage)
                 }
 
@@ -54,7 +55,7 @@ LoginModel(val binding: LoginActivityBinding) {
             }
 
         }
-        binding.progressBarHolder.visibility = View.INVISIBLE
+        binding.progressBarHolder.visibility = View.GONE
         Toast.makeText(binding.root.context, "Please check your log in data!", Toast.LENGTH_SHORT)
             .show()
         return false

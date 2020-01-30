@@ -25,8 +25,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
-            android:padding="@dimen/size_10"
-            android:onClick="@{()->model.openRideDetails()}"
+            android:padding="20dp"
+            android:onClick="@{(r)->model.openRideDetails(position)}"
             android:background="@drawable/rounded_corners"
             android:layout_width="match_parent"
             android:layout_margin="@dimen/size_20"
@@ -88,6 +88,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/blue"
+                app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
                 android:text="@{ride.getArrivalAndDeparture()}"
                 app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
                 android:layout_height="wrap_content"/>
@@ -95,8 +96,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/horizontal_guideline_30"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textSize="10sp"
                 android:textColor="@color/blue"
                 android:text="@{ride.getVehicleInfo()}"
                 app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_60"
@@ -116,13 +116,13 @@
 
         <TextView
                 android:layout_width="0dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
                 android:text="@{ride.getRideTimeAndDate()}"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="#1D2952"
+                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/horizontal_guideline_60" />

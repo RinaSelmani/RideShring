@@ -12,16 +12,15 @@
         <variable
                 name="model"
                 type="com.thesis.ridesharing.ui.rides.ride_detail.RideDetailModel"/>
+
+        <variable
+                name="ride"
+                type="com.thesis.ridesharing.models.Ride" />
     </data>
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="match_parent">
 
 
@@ -30,51 +29,6 @@
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     app:layout_constraintGuide_percent="0.1"
-                    android:layout_height="wrap_content"/>
-
-
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/horizontal_guideline_30"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.30"
-                    android:layout_height="wrap_content"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/horizontal_guideline_50"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.5"
-                    android:layout_height="wrap_content"/>
-
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/vertical_guideline_30"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.3"
-                    android:layout_height="wrap_content"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/vertical_guideline_50"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.5"
-                    android:layout_height="wrap_content"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/vertical_guideline_70"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.7"
-                    android:layout_height="wrap_content"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/horizontal_guideline_60"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.6"
                     android:layout_height="wrap_content"/>
 
             <TextView
@@ -100,224 +54,359 @@
                     app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
                     android:layout_height="21dp"/>
 
-            <TextView
-                    android:id="@+id/driver_text_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_size_20"
-                    android:text="Driver"
-                    android:layout_height="wrap_content"/>
-
-            <View
-                    android:id="@+id/driver_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/driver_text_view"
-                    android:background="@color/colorPrimary"/>
-
-
-            <ImageView
-                    android:id="@+id/profile_image_view"
-                    android:layout_width="80dp"
-                    android:src="@drawable/ic_girl"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
-                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_30"
-                    app:layout_constraintTop_toBottomOf="@id/driver_view"
-                    android:layout_height="80dp"/>
-
-            <TextView
-                    android:id="@+id/info_text_view"
-                    android:layout_width="@dimen/size_0"
-                    android:text="Rina Selmani"
-                    android:textSize="@dimen/text_size_15"
-                    android:textColor="@color/blue"
-                    app:layout_constraintTop_toBottomOf="@id/driver_view"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/phone_num_text_view"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/phone_num_text_view"
-                    android:layout_width="@dimen/size_0"
-                    android:text="+38349758764"
-                    android:textSize="@dimen/text_size_15"
-                    android:textColor="@color/blue"
-                    android:layout_marginTop="@dimen/size_10"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
-                    app:layout_constraintTop_toBottomOf="@id/info_text_view"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/car_text_view"
-                    android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_30"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_size_20"
-                    android:text="Car"
-                    android:layout_height="wrap_content"/>
-
-            <View
-                    android:id="@+id/car_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/car_text_view"
-                    android:background="@color/colorPrimary"/>
-
-            <ImageView
-                    android:id="@+id/car_image_view"
-                    android:layout_width="80dp"
-                    android:src="@drawable/ic_car__"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_50"
-                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_30"
-                    app:layout_constraintTop_toBottomOf="@id/car_view"
-                    android:layout_height="80dp"/>
-
-            <TextView
-                    android:id="@+id/car_decp_num_text_view"
-                    android:layout_width="@dimen/size_0"
-                    android:text="Mercedes A class"
-                    android:textSize="@dimen/text_size_15"
-                    android:textColor="@color/blue"
-                    android:layout_marginTop="@dimen/size_10"
-                    app:layout_constraintBottom_toTopOf="@id/year_and_color_of_car_text_view"
-                    app:layout_constraintTop_toBottomOf="@id/car_view"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
-                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_70"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/year_and_color_of_car_text_view"
-                    android:layout_width="@dimen/size_0"
-                    android:text="Blue - 2005"
-                    android:textSize="@dimen/text_size_15"
-                    android:textColor="@color/blue"
-                    android:layout_marginTop="@dimen/size_10"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_50"
-                    app:layout_constraintTop_toBottomOf="@id/car_decp_num_text_view"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
-                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_70"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/free_seats_text_view"
-                    android:layout_width="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/car_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="Free Seats"
-                    app:layout_constraintBottom_toTopOf="@id/free_seats_decp_text_view"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/size_15"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_70"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/free_seats_decp_text_view"
-                    app:layout_constraintTop_toBottomOf="@id/free_seats_text_view"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_70"
-                    app:layout_constraintEnd_toStartOf="@id/seats_imageview"
-                    android:textSize="25dp"
-                    android:textColor="@color/blue"
-                    android:text="3"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_50"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-
-            <ImageView
-                    android:id="@+id/seats_imageview"
-                    android:layout_width="30dp"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_50"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:src="@drawable/ic_seat"
-                    android:layout_marginRight="@dimen/size_10"
-                    app:layout_constraintTop_toBottomOf="@id/free_seats_text_view"
-                    android:layout_height="30dp"/>
-
-            <TextView
-                    android:id="@+id/departure_and_time_text_view"
-                    android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_50"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_size_15"
-                    android:gravity="center"
-                    android:text="Departure place and time"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="wrap_content"/>
-
-            <View
-                    android:id="@+id/depart_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/departure_and_time_text_view"
-                    android:background="@color/colorPrimary"/>
-
-            <TextView
-                    android:id="@+id/time_text_view"
-                    android:layout_width="@dimen/size_0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/depart_view"
-                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/text_size_15"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_60"
-                    android:text="22.02.2020 \n 22:08"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/location_text_view"
-                    android:layout_width="@dimen/size_0"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/depart_view"
-                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/size_10"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_60"
-                    android:text="Stacioni i autobusave Prishtine "
-                    android:layout_height="wrap_content"/>
-
-            <View
-                    android:id="@+id/recycle_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_60"
-                    android:background="@color/colorPrimary"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rides_stops_recycleview"
-                    android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/recycle_view"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="@dimen/size_20"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginRight="@dimen/size_20"
+                    android:layout_marginBottom="@dimen/size_20"
+                    android:background="@drawable/rounded_corners"
+                    android:padding="@dimen/size_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="@dimen/size_0"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintVertical_bias="0.0"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10">
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/horizontal_guideline_30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.30" />
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/horizontal_guideline_60"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.6" />
+
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/vertical_guideline_30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.3" />
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/vertical_guideline_50"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/vertical_guideline_70"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.7" />
+
+
+                <TextView
+                        android:id="@+id/driver_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:gravity="center"
+                        android:text="Driver"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                        android:id="@+id/driver_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/size_5"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/driver_text_view" />
+
+
+                <ImageView
+                        android:id="@+id/profile_image_view"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_girl"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
+                        app:layout_constraintEnd_toStartOf="@id/vertical_guideline_30"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/driver_view" />
+
+                <TextView
+                        android:id="@+id/info_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@{ride.riderProfile.getNameAndLastName()}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintBottom_toTopOf="@id/email_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
+                        app:layout_constraintTop_toBottomOf="@id/driver_view" />
+
+                <TextView
+                        android:id="@+id/email_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:text="@{ride.riderProfile.email}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintBottom_toTopOf="@id/phone_num_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
+                        app:layout_constraintTop_toBottomOf="@id/info_text_view" />
+
+                <TextView
+                        android:id="@+id/phone_num_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@{ride.riderProfile.phoneNumber}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintBottom_toTopOf="@id/desp_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
+                        app:layout_constraintTop_toBottomOf="@id/email_text_view" />
+
+                <TextView
+                        android:id="@+id/desp_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@{ride.riderProfile.description}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_30"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
+                        app:layout_constraintTop_toBottomOf="@id/phone_num_text_view" />
+
+                <TextView
+                        android:id="@+id/car_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:gravity="center"
+                        android:text="Car"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_30" />
+
+                <View
+                        android:id="@+id/car_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/car_text_view" />
+
+                <ImageView
+                        android:id="@+id/car_image_view"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_car__"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_60"
+                        app:layout_constraintEnd_toStartOf="@id/vertical_guideline_30"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/car_view" />
+
+                <TextView
+                        android:id="@+id/car_decp_num_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@{ride.vehicle.getBrandAndModel()}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintBottom_toTopOf="@id/year_and_color_of_car_text_view"
+                        app:layout_constraintEnd_toStartOf="@id/vertical_guideline_70"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
+                        app:layout_constraintTop_toBottomOf="@id/car_view" />
+
+                <TextView
+                        android:id="@+id/year_and_color_of_car_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@{ride.vehicle.getColorAndYear()}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_60"
+                        app:layout_constraintEnd_toStartOf="@id/vertical_guideline_70"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_30"
+                        app:layout_constraintTop_toBottomOf="@id/car_decp_num_text_view" />
+
+                <TextView
+                        android:id="@+id/free_seats_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Free Seats"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/size_15"
+                        app:layout_constraintBottom_toTopOf="@id/free_seats_decp_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_70"
+                        app:layout_constraintTop_toBottomOf="@id/car_view" />
+
+                <TextView
+                        android:id="@+id/free_seats_decp_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{ride.getSeatsInfo()}"
+                        android:textColor="@color/blue"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_60"
+                        app:layout_constraintEnd_toStartOf="@id/seats_imageview"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_70"
+                        app:layout_constraintTop_toBottomOf="@id/free_seats_text_view" />
+
+                <ImageView
+                        android:id="@+id/seats_imageview"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:src="@drawable/ic_seat"
+                        app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_60"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/free_seats_text_view" />
+
+                <TextView
+                        android:id="@+id/departure_and_time_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:gravity="center"
+                        android:text="Departure Time and Places"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_60" />
+
+                <View
+                        android:id="@+id/depart_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/departure_and_time_text_view" />
+
+                <TextView
+                        android:id="@+id/time_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:gravity="center"
+                        android:text="@{ride.getRideTimeAndDate()}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/depart_view" />
+
+                <TextView
+                        android:id="@+id/location_text_view"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:gravity="center"
+                        android:text="@{ride.getArrivalAndDeparture()}"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                        app:layout_constraintTop_toBottomOf="@id/depart_view" />
+
+                <View
+                        android:id="@+id/third_seperator_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/location_text_view" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/description_container"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/third_seperator_view">
+
+                    <TextView
+                            android:id="@+id/ride_decp_text_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Ride Description"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_size_15"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/ride_desp_text_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{ride.rideDescription}"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/text_size_12"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ride_decp_text_view" />
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorPrimary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ride_desp_text_view" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                        android:id="@+id/passengers_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:gravity="center"
+                        android:text="@string/passengers"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_15"
+                        app:layout_constraintEnd_toEndOf="@id/profile_image_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/description_container" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/passengers_recycleview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/passengers_text_view" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
 </layout>

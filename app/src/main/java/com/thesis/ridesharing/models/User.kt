@@ -10,4 +10,8 @@ class User(
     constructor() : this("","","","","") {
 
     }
+
+    fun getNameAndLastName():String{
+        return "$firstName  $secondName"
+    }
 }

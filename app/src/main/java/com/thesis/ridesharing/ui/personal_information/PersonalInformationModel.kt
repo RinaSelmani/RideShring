@@ -3,22 +3,19 @@ package com.thesis.ridesharing.ui.personal_information
 import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.thesis.ridesharing.currentUser
 import com.thesis.ridesharing.databinding.PersonalInformationActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.models.User
 import org.greenrobot.eventbus.EventBus
 
 class PersonalInformationModel(val binding: PersonalInformationActivityBinding) {
-    private lateinit var currentUserDb: DatabaseReference
     val COLLECTION_NAME_KEY = "USERS"
 
     init {
-
-        getData()
+        binding.user = currentUser
     }
-
     fun getData() {
         binding.progressBarHolder.visibility = View.VISIBLE
         val uid = FirebaseAuth.getInstance().uid
@@ -40,6 +37,10 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
     }
 
     fun update() {
+
+    }
+
+    fun validateData() {
 
     }
 

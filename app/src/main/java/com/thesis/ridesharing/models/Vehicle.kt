@@ -14,7 +14,11 @@ class Vehicle(
     )
 
     fun getBrandAndModel(): String {
-        return brand + " " + model
+        return "$brand  + $model"
+    }
+
+    fun getColorAndYear(): String {
+        return "$color  $yearOfProduction"
     }
 
     override fun toString(): String {

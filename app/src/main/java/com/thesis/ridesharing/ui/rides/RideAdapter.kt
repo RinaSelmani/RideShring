@@ -48,8 +48,9 @@ class RideAdapter : RecyclerView.Adapter<RideAdapter.RideItemViewModel>() {
     }
 
     inner class RideItemViewModel(val binding: RideItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun openRideDetails() {
-            EventBus.getDefault().post(OpenActivityEvent(RideDetailActivity()))
+        fun openRideDetails(position: Int) {
+            EventBus.getDefault()
+                .post(OpenActivityEvent(RideDetailActivity(), objToPass = rides[position].id))
         }
 
         fun reserve(position: Int) {

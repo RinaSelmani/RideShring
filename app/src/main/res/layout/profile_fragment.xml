@@ -52,7 +52,6 @@
                 android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Rina Selmani"
                 android:textSize="@dimen/txt_size_25"
                 android:gravity="center"
                 android:textColor="@color/black"

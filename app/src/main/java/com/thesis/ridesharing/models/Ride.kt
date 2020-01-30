@@ -1,7 +1,9 @@
 package com.thesis.ridesharing.models
 
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class Ride(
     var riderId: String,
@@ -17,8 +19,10 @@ class Ride(
     val vehicle: Vehicle,
     var id: String,
     val departureAndArrivalAndDate: String,
-    val departureAndArrival: String
-) {
+    val departureAndArrival: String,
+    val miliseconds: Long,
+    val rideDescription:String
+)  {
 
 
     constructor() : this(
@@ -33,7 +37,7 @@ class Ride(
         mutableListOf<String>(),
         0,
         Vehicle(),
-        "", "", ""
+        "", "", "", 0,""
     )
 
     fun showFreeSeats(): String {
@@ -53,8 +57,23 @@ class Ride(
     }
 
     fun getRideTimeAndDate(): String {
-        val format = SimpleDateFormat("dd/MM/yyyy hh:mm")
-        return format.format(dateTime)
+        return getDate(miliseconds, "dd/MM/yyyy HH:mm ")
+    }
+
+    fun getSeatsInfo(): String {
+        val numberOfSeats = vehicle.numberOfSeats - 1
+        return "$freeSeats/$numberOfSeats"
+    }
+
+
+    fun getDate(milliSeconds: Long, dateFormat: String): String {
+        // Create a DateFormatter object for displaying date in specified format.
+        val formatter = SimpleDateFormat(dateFormat)
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+        return formatter.format(calendar.time)
     }
 
 

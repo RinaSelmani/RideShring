@@ -42,8 +42,8 @@ class ShowRidesViewModel(
     }
 
     private fun getMyArchivedRides() {
-        val time = Date()
-        firestoreDb.collection(RIDE_COLLECTION).whereLessThan("dateTime", time).get()
+        firestoreDb.collection(RIDE_COLLECTION)
+            .whereLessThan("miliseconds", System.currentTimeMillis()).get()
             .addOnSuccessListener {
                 val documents: List<DocumentSnapshot> = it.documents
                 val listOfRides = mutableListOf<Ride>()
@@ -103,8 +103,8 @@ class ShowRidesViewModel(
     }
 
     private fun getMyRides() {
-        val time = Date()
-        firestoreDb.collection(RIDE_COLLECTION).whereGreaterThanOrEqualTo("dateTime", time).get()
+        firestoreDb.collection(RIDE_COLLECTION)
+            .whereGreaterThanOrEqualTo("miliseconds", System.currentTimeMillis()).get()
             .addOnSuccessListener {
                 val documents: List<DocumentSnapshot> = it.documents
                 val listOfRides = mutableListOf<Ride>()

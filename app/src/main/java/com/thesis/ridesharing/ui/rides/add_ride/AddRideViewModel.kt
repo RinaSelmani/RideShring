@@ -118,6 +118,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
                 timePicker()
             }, mYear, mMonth, mDay
         )
+        datePickerDialog.datePicker.minDate = (System.currentTimeMillis())
         datePickerDialog.show()
     }
 
@@ -139,6 +140,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
                 binding.timeEditText.setText(hour + ":" + minute.toString())
             }, mHour, mMinute, true
         )
+
         timePickerDialog.show()
     }
 
@@ -186,6 +188,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
 
             val pattern = "MM/dd/yyyy HH:mm"
             val dateFormated = SimpleDateFormat(pattern).parse(date+" "+time)
+            val miliseconds = dateFormated.time
             val ride = Ride(
                 riderId = uid,
                 riderProfile = user,
@@ -200,7 +203,8 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
                 vehicle = vehicle,
                 id = "",
                 departureAndArrivalAndDate = departure + " " + arrival + " " + date,
-                departureAndArrival = departure+" "+arrival
+                departureAndArrival = departure + " " + arrival,
+                miliseconds = miliseconds
             )
 
             firestoreDb.collection(RIDE_COLLECTION).document().set(ride)

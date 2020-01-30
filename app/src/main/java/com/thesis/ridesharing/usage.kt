@@ -1,5 +1,6 @@
 package com.thesis.ridesharing
 
+import com.thesis.ridesharing.models.User
 import java.text.SimpleDateFormat
 
 val email_pattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+"
@@ -11,7 +12,7 @@ val car_brands = hashMapOf(
     "Porsche" to arrayOf("Panamera"),
     "Wolkswagen" to arrayOf("Arteon", "Atlas", "Beetle")
 )
-
+lateinit var currentUser: User
 val colors = arrayOf("Blue", "Red", "Black", "Yellow", "Gray", "White")
 val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
 fun years(): ArrayList<String> {

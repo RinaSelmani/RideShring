@@ -57,6 +57,8 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
                 //*************Call Time Picker Here ********************
             }, mYear, mMonth, mDay
         )
+
+        datePickerDialog.datePicker.minDate=(System.currentTimeMillis())
         datePickerDialog.show()
     }
 
@@ -79,7 +81,7 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
 
             }
             .addOnFailureListener {
-                Log.d("ERORr", it.localizedMessage)
+                Log.d("ERORR", it.localizedMessage)
                 binding.progressBarHolder.visibility = View.GONE
 
             }
@@ -129,6 +131,9 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
     fun resetSearch() {
         adapter.setRidesList(initialRidesList)
         binding.ridesRecycleview.adapter = adapter
+        binding.arrivalEditText.setText("")
+        binding.departureEditText.setText("")
+        binding.dateEditText.setText("")
 
     }
 
@@ -141,7 +146,7 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
             if (date.equals("")) {
                 searchByDepartureAndArrival(departure, arrival)
             } else {
-                serachByAllParams(departure, arrival, date)
+                searchByAllParams(departure, arrival, date)
             }
 
         }
@@ -176,9 +181,8 @@ class FindRideModel(val binding: FindRideActivityBinding, val adapter: RideAdapt
             }
 
     }
-    //TODO make sure to return from search with date from now and on
 
-    private fun serachByAllParams(departure: String, arrival: String, date: String) {
+    private fun searchByAllParams(departure: String, arrival: String, date: String) {
         val departureAndArrivalAndDate = "$departure $arrival $date"
         firestoreDb.collection(RIDE_COLLECTION)
             .whereEqualTo("departureAndArrivalAndDate", departureAndArrivalAndDate)

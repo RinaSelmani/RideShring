@@ -1,15 +1,24 @@
 package com.thesis.ridesharing.ui.home.profile
 
 import com.google.firebase.auth.FirebaseAuth
+import com.thesis.ridesharing.currentUser
 import com.thesis.ridesharing.databinding.ProfileFragmentBinding
 import com.thesis.ridesharing.events.LogOutEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
+import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.ui.my_vehicles.MyVehiclesActivity
 import com.thesis.ridesharing.ui.personal_information.PersonalInformationActivity
 import com.thesis.ridesharing.ui.rides.past_rides.PastRidesActivity
 import org.greenrobot.eventbus.EventBus
 
 class ProfileViewModel(val binding: ProfileFragmentBinding) {
+    val COLLECTION_NAME_KEY = "USERS"
+    lateinit var user: User
+
+    init {
+        binding.nameTextView.setText(currentUser.getNameAndLastName())
+    }
+
 
     fun openPersonalInformationActivity() {
         EventBus.getDefault().post(OpenActivityEvent(PersonalInformationActivity()))
@@ -27,4 +36,6 @@ class ProfileViewModel(val binding: ProfileFragmentBinding) {
     fun openMyVehiclesActivity() {
         EventBus.getDefault().post(OpenActivityEvent(MyVehiclesActivity()))
     }
+
+
 }
