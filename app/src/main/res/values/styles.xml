@@ -9,6 +9,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextInput" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:strokeColor">@color/white</item>
+        <item name="boxStrokeColor">@color/white</item>
+    </style>
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>

@@ -76,5 +76,9 @@ class Ride(
         return formatter.format(calendar.time)
     }
 
+    fun getPriceToString():String{
+        return price.toString()
+    }
+
 
 }

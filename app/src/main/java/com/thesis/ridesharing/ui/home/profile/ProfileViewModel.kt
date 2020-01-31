@@ -1,6 +1,7 @@
 package com.thesis.ridesharing.ui.home.profile
 
 import com.google.firebase.auth.FirebaseAuth
+import com.thesis.ridesharing.R
 import com.thesis.ridesharing.currentUser
 import com.thesis.ridesharing.databinding.ProfileFragmentBinding
 import com.thesis.ridesharing.events.LogOutEvent
@@ -13,10 +14,12 @@ import org.greenrobot.eventbus.EventBus
 
 class ProfileViewModel(val binding: ProfileFragmentBinding) {
     val COLLECTION_NAME_KEY = "USERS"
-    lateinit var user: User
 
     init {
         binding.nameTextView.setText(currentUser.getNameAndLastName())
+        if (currentUser.gender.equals("M")) {
+            binding.profileImageView.setBackgroundResource(R.drawable.ic_man)
+        }
     }
 
 

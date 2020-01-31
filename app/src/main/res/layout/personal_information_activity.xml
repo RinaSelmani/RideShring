@@ -18,23 +18,50 @@
                 type="com.thesis.ridesharing.models.User" />
     </data>
 
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
                 android:orientation="vertical"
+            android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <LinearLayout
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Personal Information"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_15"
+                app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_10"
+                android:background="@android:color/transparent"
+                android:onClick="@{()->model.closeActivity()}"
+                android:padding="@dimen/size_10"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
                     android:id="@+id/progress_bar_holder"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_0"
                     android:background="@color/gray_background"
                     android:gravity="center"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -52,50 +79,31 @@
                         app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:padding="@dimen/size_20"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10">
 
-                <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/horizontal_guideline_10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.1" />
 
                 <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/horizontal_guideline_90"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        app:layout_constraintGuide_percent="0.9" />
+                        app:layout_constraintGuide_begin="634dp" />
 
-                <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:onClick="@{()->model.closeActivity()}"
-                        android:padding="@dimen/size_10"
-                        android:src="@drawable/ic_arrow_back"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingTop="@dimen/size_10"
-                        android:text="@string/personal_information"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_size_15"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                         android:id="@+id/profile_image_view"
@@ -103,70 +111,216 @@
                         android:layout_height="100dp"
                         android:layout_marginBottom="40dp"
                         android:contentDescription="@string/imageview_for_profile"
-                        android:src="@drawable/ic_girl"
-                        app:layout_constraintBottom_toTopOf="@id/first_name_edit_line"
+                        android:background="@drawable/ic_girl"
+                        app:layout_constraintBottom_toTopOf="@id/first_name_text_input"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/horizontal_guideline_10" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                        android:id="@+id/first_name_edit_line"
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/first_name_text_input"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:layout_marginBottom="@dimen/size_10"
+                        android:focusable="false"
                         android:hint="@string/first_name"
-                        android:text="@{user.firstName}"
-                        app:layout_constraintBottom_toTopOf="@id/last_name_edit_line"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@id/last_name_text_input"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/profile_image_view" />
+                        app:layout_constraintTop_toBottomOf="@id/profile_image_view">
 
-                <EditText
-                        android:id="@+id/last_name_edit_line"
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/first_name_edit_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:text="@{user.firstName}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/last_name_text_input"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:focusable="false"
                         android:hint="Last Name"
-                        android:text="@{user.secondName}"
-                        app:layout_constraintBottom_toTopOf="@id/email_edit_line"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@id/email_text_input"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/first_name_edit_line" />
+                        app:layout_constraintTop_toBottomOf="@id/first_name_text_input">
 
-                <EditText
-                        android:id="@+id/email_edit_line"
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/last_name_edit_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:text="@{user.secondName}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/email_text_input"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:focusable="false"
                         android:hint="@string/email"
-                        android:text="@{user.email}"
+                        app:boxStrokeColor="@color/colorPrimary"
                         app:layout_constraintBottom_toTopOf="@id/phone_number_edit_line"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/last_name_edit_line" />
+                        app:layout_constraintTop_toBottomOf="@id/last_name_text_input">
 
-                <EditText
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/email_edit_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:text="@{user.email}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/prefix_edit_line"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_3"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@id/gender_edit_line"
+                        app:layout_constraintEnd_toStartOf="@id/phone_number_edit_line"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/email_text_input">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/prefix_text_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:inputType="phone"
+                            android:text="+383"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/phone_number_edit_line"
-                        android:layout_width="match_parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Phone Number"
-                        android:text="@{user.phoneNumber}"
-                        app:layout_constraintBottom_toTopOf="@id/desc_edit_line"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_10"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@id/gender_edit_line"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/email_edit_line" />
+                        app:layout_constraintStart_toEndOf="@id/prefix_edit_line"
+                        app:layout_constraintTop_toBottomOf="@id/email_text_input">
 
-                <EditText
-                        android:id="@+id/desc_edit_line"
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phone_number_text_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:maxLength="8"
+                            android:text="@{user.phoneNumber}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/gender_edit_line"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:focusable="false"
+                        android:hint="Gender"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@id/desc_edit_text_input"
+                        app:layout_constraintEnd_toStartOf="@id/age_edit_line"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/phone_number_edit_line">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/gender_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_arrow_drop_down"
+                            android:focusable="false"
+                            android:onClick="@{()->model.selectSex()}"
+                            android:text="@{user.gender}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/age_edit_line"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_3"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:focusable="false"
+                        android:hint="Age"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:layout_constraintBottom_toTopOf="@id/desc_edit_text_input"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/gender_edit_line"
+                        app:layout_constraintTop_toBottomOf="@id/phone_number_edit_line">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/age_edit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_arrow_drop_down"
+                            android:focusable="false"
+                            android:onClick="@{()->model.selectAge()}"
+                            android:text="@{user.getAgeBasedOnYear()}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/desc_edit_text_input"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="top"
+                        android:layout_marginLeft="@dimen/size_10"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:layout_marginBottom="@dimen/size_10"
+                        android:focusable="false"
                         android:hint="Description About yourself like occupation,age etc"
-                        android:text="@{user.description}"
+                        app:boxStrokeColor="@color/colorPrimary"
                         app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_90"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/phone_number_edit_line" />
+                        app:layout_constraintTop_toBottomOf="@id/age_edit_line">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/desc_edit_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:text="@{user.description}"
+                            android:textSize="@dimen/text_size_14" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <Button
+                        android:id="@+id/update_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/size_20"
@@ -179,7 +333,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_90" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

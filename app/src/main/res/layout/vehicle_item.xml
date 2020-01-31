@@ -23,158 +23,201 @@
                 type="Integer" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:background="@drawable/rounded_corners"
             android:layout_margin="@dimen/size_10"
-            android:onClick="@{(m)->model.selectOneVehicle(position)}"
+            app:cardCornerRadius="@dimen/txt_size_25"
             android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/vertical_guideline_50"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5"
-                android:layout_height="wrap_content"/>
-
-        <ImageView
-                android:id="@+id/vehice_image_view"
-                android:layout_width="60dp"
-                app:layout_constraintBottom_toTopOf="@id/type_desc_text_view"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_car__"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="60dp" />
-
-        <TextView
-                android:id="@+id/type_text_view"
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vehice_image_view"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_15"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_height="wrap_content"
-                android:text="@string/type"/>
+                android:layout_margin="@dimen/size_10"
+                android:onClick="@{(m)->model.selectOneVehicle(position)}">
 
-        <TextView
-                android:id="@+id/type_desc_text_view"
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vehice_image_view"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_15"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
-                android:layout_height="wrap_content"
-                android:text="@{vehicle.getBrandAndModel()}" />
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/vertical_guideline_50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-                android:id="@+id/year_of_production_text_view"
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/type_text_view"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_15"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"
-                android:text="@string/year_of_production"/>
+            <ImageView
+                    android:id="@+id/vehice_image_view"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_carr"
+                    app:layout_constraintBottom_toTopOf="@id/type_desc_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-                android:id="@+id/year_of_production_desc_text_view"
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/type_desc_text_view"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_15"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
-                android:layout_height="wrap_content"
-                android:text="@{vehicle.yearOfProduction}" />
+            <View
+                    android:id="@+id/first_seperator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/vehice_image_view" />
 
-        <TextView
-                android:id="@+id/color_text_view"
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/year_of_production_text_view"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_15"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"
-                android:text="@string/color"/>
+            <TextView
+                    android:id="@+id/type_text_view"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/type"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/first_seperator" />
 
-        <TextView
-                android:id="@+id/color_desc_text_view"
-                android:layout_width="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/year_of_production_desc_text_view"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_15"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
-                android:layout_height="wrap_content"
-                android:text="@{vehicle.color}" />
+            <TextView
+                    android:id="@+id/type_desc_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{vehicle.getBrandAndModel()}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                    app:layout_constraintTop_toBottomOf="@id/first_seperator" />
 
-        <TextView
-                android:id="@+id/seats_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/number_of_seats"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_size_15"
-                app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/color_text_view" />
-
-        <TextView
-                android:id="@+id/seats_decp_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{vehicle.getSeats()}"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_15"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
-                app:layout_constraintTop_toBottomOf="@id/color_desc_text_view" />
-
-        <TextView
-                android:id="@+id/bottom_textview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/color_desc_text_view" />
+            <View
+                    android:id="@+id/second_seperator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/type_desc_text_view" />
 
 
-        <ImageButton
-                android:id="@+id/delete_imagebutton"
-                android:layout_width="50dp"
-                android:src="@drawable/ic_delete"
-                android:onClick="@{(m)->model.deleteVehicle(position)}"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:background="@android:color/transparent"
-                android:layout_height="50dp"/>
+            <TextView
+                    android:id="@+id/year_of_production_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/year_of_production"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/second_seperator" />
+
+            <TextView
+                    android:id="@+id/year_of_production_desc_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{vehicle.yearOfProduction}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                    app:layout_constraintTop_toBottomOf="@id/second_seperator" />
+
+            <View
+                    android:id="@+id/third_seperator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/year_of_production_text_view" />
 
 
-        <ImageButton
-                android:id="@+id/check_imagebutton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:visibility="gone"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_check_circle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                    android:id="@+id/color_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/color"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/third_seperator" />
+
+            <TextView
+                    android:id="@+id/color_desc_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{vehicle.color}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                    app:layout_constraintTop_toBottomOf="@id/third_seperator" />
+
+            <View
+                    android:id="@+id/fourth_seperator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/color_desc_text_view" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                    android:id="@+id/seats_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/number_of_seats"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/color_text_view" />
+
+            <TextView
+                    android:id="@+id/seats_decp_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{vehicle.getSeats()}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
+                    app:layout_constraintTop_toBottomOf="@id/color_desc_text_view" />
+
+            <View
+                    android:id="@+id/fifth_seperator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@id/seats_decp_text_view" />
+
+            <TextView
+                    android:id="@+id/bottom_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fifth_seperator" />
+
+
+            <ImageButton
+                    android:id="@+id/delete_imagebutton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{(m)->model.deleteVehicle(position)}"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                    android:id="@+id/check_imagebutton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_check_circle"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -57,10 +57,12 @@ class RideAdapter : RecyclerView.Adapter<RideAdapter.RideItemViewModel>() {
             val text = binding.reserveButton.text.toString()
             val rideId = rides[position].id
             val numberOfFreeSeats = rides[position].freeSeats
+            val numberOfSeats=rides[position].vehicle.numberOfSeats.toString()
             val passangers = rides[position].passengers
             if (text.equals("Reserve")) {
                 binding.reserveButton.setText("Cancel Reservation")
-                binding.numberOfFreeSeats.setText((numberOfFreeSeats - 1).toString())
+                val numberOfFreeSeatsString=(numberOfFreeSeats - 1).toString()
+                binding.numberOfFreeSeats.setText("$numberOfFreeSeatsString/$numberOfSeats")
                 passangers.add(currentUserId)
                 EventBus.getDefault().post(
                     ReserveRideEvent(
@@ -72,7 +74,8 @@ class RideAdapter : RecyclerView.Adapter<RideAdapter.RideItemViewModel>() {
 
             } else {
                 binding.reserveButton.setText("Reserve")
-                binding.numberOfFreeSeats.setText((numberOfFreeSeats + 1).toString())
+                val numberOfFreeSeatsString=(numberOfFreeSeats + 1).toString()
+                binding.numberOfFreeSeats.setText("$numberOfFreeSeatsString/$numberOfSeats")
                 passangers.remove(currentUserId)
                 EventBus.getDefault().post(
                     CancelReservationEvent(

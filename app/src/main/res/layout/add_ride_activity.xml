@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/gradient_background"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -60,6 +60,7 @@
                     android:layout_height="@dimen/size_0"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/gradient_background"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10">
 
@@ -81,48 +82,82 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
-                        <EditText
-                                android:id="@+id/departure_edit_text"
+                        <TextView
+                                android:id="@+id/missing_car_warning_text_view"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/size_10"
-                                android:background="@drawable/rounded_border_corners"
-                                android:focusable="false"
-                                android:hint="From*"
-                                android:onClick="@{(p)->model.openGoogleMapsPlaces(`departure`)}"
-                                android:padding="@dimen/size_10"
-                                android:textColorHint="@color/colorPrimary"
-                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:text="Add at least one vehicle!"
+                                android:visibility="gone"
+                                android:textColor="@color/warning_red_color"
+                                android:textSize="@dimen/text_size_12"
+                                app:layout_constraintBottom_toTopOf="@id/departure_edit_text_input"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/departure_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
+                                android:focusable="false"
+                                android:hint="From*"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/missing_car_warning_text_view">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/departure_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:inputType="text"
+                                    android:onClick="@{(p)->model.openGoogleMapsPlaces(`departure`)}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
 
                         <ImageButton
                                 android:id="@+id/swipe_image_button"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/size_10"
+                                android:layout_margin="@dimen/size_5"
                                 android:background="@android:color/transparent"
                                 android:onClick="@{()->model.swapDepartureAndArrival()}"
                                 android:padding="@dimen/size_10"
                                 android:src="@drawable/ic_swap_calls_black_24dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/departure_edit_text" />
+                                app:layout_constraintTop_toBottomOf="@id/departure_edit_text_input" />
 
-                        <EditText
-                                android:id="@+id/arrival_edit_text"
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/arrival_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/size_5"
-                                android:background="@drawable/rounded_border_corners"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
                                 android:focusable="false"
                                 android:hint="To*"
-                                android:onClick="@{(p)->model.openGoogleMapsPlaces(`arrival`)}"
-                                android:padding="@dimen/size_10"
-                                android:textColorHint="@color/colorPrimary"
+                                app:boxStrokeColor="@color/colorPrimary"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/swipe_image_button" />
+                                app:layout_constraintTop_toBottomOf="@id/swipe_image_button">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/arrival_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:inputType="text"
+                                    android:onClick="@{(p)->model.openGoogleMapsPlaces(`arrival`)}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
                         <View
@@ -133,7 +168,7 @@
                                 android:background="@color/colorPrimary"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/arrival_edit_text" />
+                                app:layout_constraintTop_toBottomOf="@id/arrival_edit_text_input" />
 
                         <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/my_vehicles_recycle_view"
@@ -181,41 +216,56 @@
                                     app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-
-                            <EditText
-                                    android:id="@+id/free_seats_descp_edit_text"
-                                    android:layout_width="100dp"
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/price_descp_edit_text_input"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    android:layout_width="@dimen/size_0"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/size_20"
-                                    android:background="@drawable/rounded_blue_border_colors"
-                                    android:drawableRight="@drawable/ic_arrow_drop_down_blue"
+                                    android:layout_marginLeft="@dimen/size_10"
+                                    android:layout_marginRight="@dimen/size_10"
+                                    android:layout_marginBottom="@dimen/size_10"
                                     android:focusable="false"
-                                    android:gravity="center"
-                                    android:onClick="@{()->model.setFreeSeats()}"
-                                    android:padding="@dimen/size_10"
-                                    android:textColor="@color/blue"
-                                    android:textSize="@dimen/text_size_15"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
-                                    app:layout_constraintTop_toBottomOf="@id/free_seats_text_view" />
-
-                            <EditText
-                                    android:id="@+id/price_descp_edit_text"
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/size_20"
-                                    android:background="@drawable/rounded_blue_border_colors"
-                                    android:drawableRight="@drawable/ic_euro"
-                                    android:gravity="center"
                                     android:hint="0.0"
-                                    android:inputType="numberDecimal"
-                                    android:padding="@dimen/size_10"
-                                    android:text="3.5"
-                                    android:textColor="@color/blue"
-                                    android:textSize="@dimen/text_size_15"
+                                    app:boxStrokeColor="@color/colorPrimary"
                                     app:layout_constraintEnd_toStartOf="@id/inner_vertical_guideline_50"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/price_text_view" />
+                                    app:layout_constraintTop_toBottomOf="@id/price_text_view">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/price_descp_edit_text"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:drawableRight="@drawable/ic_euro"
+                                        android:inputType="numberDecimal"
+                                        android:textSize="@dimen/text_size_14" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/free_seats_descp_edit_text_input"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    android:layout_width="@dimen/size_0"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/size_10"
+                                    android:layout_marginRight="@dimen/size_10"
+                                    android:layout_marginBottom="@dimen/size_10"
+                                    android:focusable="false"
+                                    app:boxStrokeColor="@color/colorPrimary"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/inner_vertical_guideline_50"
+                                    app:layout_constraintTop_toBottomOf="@id/free_seats_text_view">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/free_seats_descp_edit_text"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:drawableRight="@drawable/ic_arrow_drop_down_blue"
+                                        android:focusable="false"
+                                        android:inputType="text"
+                                        android:onClick="@{()->model.setFreeSeats()}"
+                                        android:textSize="@dimen/text_size_14" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -249,41 +299,60 @@
                                 android:orientation="vertical"
                                 app:layout_constraintGuide_percent=".5" />
 
-                        <EditText
-                                android:id="@+id/date_edit_text"
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/date_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="@dimen/size_0"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/size_10"
-                                android:background="@drawable/rounded_blue_border_colors"
-                                android:drawableRight="@drawable/ic_date"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
                                 android:focusable="false"
-                                android:gravity="center"
                                 android:hint="dd/mm/yyyy"
-                                android:onClick="@{()->model.datePicker()}"
-                                android:padding="@dimen/size_5"
-                                android:textColor="@color/blue"
-                                android:textColorHint="@color/blue"
+                                app:boxStrokeColor="@color/colorPrimary"
                                 app:layout_constraintEnd_toStartOf="@id/vertical_guideline_50"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/date_text_text_view" />
+                                app:layout_constraintTop_toBottomOf="@id/date_text_text_view">
 
-                        <EditText
-                                android:id="@+id/time_edit_text"
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/date_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableRight="@drawable/ic_date"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="text"
+                                    android:onClick="@{()->model.datePicker()}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/time_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="@dimen/size_0"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/size_10"
-                                android:background="@drawable/rounded_blue_border_colors"
-                                android:drawableRight="@drawable/ic_access_time"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
                                 android:focusable="false"
-                                android:gravity="center"
                                 android:hint="hh:mm"
-                                android:onClick="@{()->model.timePicker()}"
-                                android:padding="@dimen/size_5"
-                                android:textColor="@color/blue"
-                                android:textColorHint="@color/blue"
+                                app:boxStrokeColor="@color/colorPrimary"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/vertical_guideline_50"
-                                app:layout_constraintTop_toBottomOf="@id/date_text_text_view" />
+                                app:layout_constraintTop_toBottomOf="@id/date_text_text_view">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/time_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:drawableRight="@drawable/ic_access_time"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="text"
+                                    android:onClick="@{()->model.timePicker()}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
 
                         <View
                                 android:id="@+id/third_seperator_view"
@@ -293,7 +362,7 @@
                                 android:background="@color/colorPrimary"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/date_edit_text" />
+                                app:layout_constraintTop_toBottomOf="@id/date_edit_text_input" />
 
                         <TextView
                                 android:id="@+id/ride_decp_text_view"
@@ -309,15 +378,30 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/third_seperator_view" />
 
-                        <EditText
-                                android:id="@+id/ride_decp_edit_text"
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/ride_decp_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:background="@drawable/rounded_blue_border_colors"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
+                                android:focusable="false"
+                                android:hint="Description fot ride"
+                                app:boxStrokeColor="@color/colorPrimary"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/ride_decp_text_view" />
+                                app:layout_constraintTop_toBottomOf="@id/ride_decp_text_view">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/ride_decp_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:inputType="textMultiLine|text"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
                                 android:id="@+id/past_rides_text_view"
@@ -333,7 +417,7 @@
                                 android:textColor="@color/white"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/ride_decp_edit_text" />
+                                app:layout_constraintTop_toBottomOf="@id/ride_decp_edit_text_input" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout

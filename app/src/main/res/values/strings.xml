@@ -37,4 +37,5 @@
     <string name="participating_rides">Participating Rides</string>
     <string name="posted_rides">Posted Rides</string>
     <string name="passengers">Passengers</string>
+    <string name="password_confirm">Password Confirm</string>
 </resources>

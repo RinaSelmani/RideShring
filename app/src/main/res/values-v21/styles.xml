@@ -12,4 +12,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+
+    <style name="TextInput" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="android:theme">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:strokeColor">@color/white</item>
+    </style>
 </resources>

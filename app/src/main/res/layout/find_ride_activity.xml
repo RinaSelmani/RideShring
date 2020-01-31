@@ -16,6 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -25,6 +26,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.1"
                 android:layout_height="wrap_content"/>
+
 
         <TextView
                 android:layout_width="match_parent"
@@ -50,142 +52,200 @@
                 app:layout_constraintBottom_toTopOf="@id/horizontal_guideline_10"
                 android:layout_height="wrap_content"/>
 
-        <EditText
-                android:id="@+id/departure_edit_text"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
                 app:layout_constraintTop_toBottomOf="@id/horizontal_guideline_10"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:hint="From"
-                android:background="@drawable/rounded_blue_border_colors"
-                android:focusable="false"
-                android:layout_margin="@dimen/size_10"
-                android:padding="@dimen/size_10"
-                android:onClick="@{(p)->model.openGoogleMapsPlaces(`departure`)}"
-                android:textColorHint="@color/blue"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"/>
-
-        <ImageButton
-                android:id="@+id/swipe_image_button"
-                android:layout_width="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@android:color/transparent"
-                android:layout_margin="@dimen/size_10"
-                android:src="@drawable/ic_swap_calls_black_24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:onClick="@{()->model.swapValues()}"
-                app:layout_constraintTop_toBottomOf="@id/departure_edit_text"
-                android:layout_height="wrap_content"/>
-
-        <EditText
-                android:id="@+id/arrival_edit_text"
-                android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/swipe_image_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:hint="To"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="@dimen/size_10"
-                android:padding="@dimen/size_10"
-                android:background="@drawable/rounded_blue_border_colors"
-                android:focusable="false"
-                android:onClick="@{(p)->model.openGoogleMapsPlaces(`arrival`)}"
-                android:textColorHint="@color/blue"
-                app:layout_constraintBottom_toTopOf="@id/date_edit_text"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="wrap_content"/>
-
-        <EditText
-                android:id="@+id/date_edit_text"
-                android:layout_width="@dimen/size_0"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/size_10"
-                android:background="@drawable/rounded_blue_border_colors"
-                android:drawableRight="@drawable/ic_date"
-                android:focusable="false"
-                android:gravity="center"
-                android:hint="Date of departure"
-                android:onClick="@{()->model.datePicker()}"
-                android:padding="@dimen/size_10"
-                android:textColor="@color/blue"
-                android:textColorHint="@color/blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/arrival_edit_text" />
-
-        <Button
-                android:id="@+id/search_button"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/size_10"
-                android:onClick="@{()->model.searchRides()}"
-                app:layout_constraintStart_toStartOf="parent"
-                android:background="@drawable/rounded_corners_red"
-                android:textColor="@color/white"
-                android:textSize="@dimen/size_15"
-                app:layout_constraintEnd_toStartOf="@id/reset_button"
-                android:text="Search"
-                app:layout_constraintTop_toBottomOf="@id/date_edit_text"
-                android:layout_margin="@dimen/size_10"
-                android:layout_height="wrap_content"/>
-
-        <Button
-                android:id="@+id/reset_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/size_10"
-                android:background="@drawable/rounded_corners_red"
-                android:onClick="@{()->model.resetSearch()}"
-                android:padding="@dimen/size_10"
-                android:text="Reset"
-                android:textColor="@color/white"
-                android:textSize="@dimen/size_15"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/search_button"
-                app:layout_constraintTop_toBottomOf="@id/date_edit_text" />
-
-        <View
-                android:id="@+id/seperator_view"
-                android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/search_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/colorPrimary"
-                android:layout_marginTop="@dimen/size_10"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="1dp"/>
-
-        <LinearLayout
-                android:id="@+id/progress_bar_holder"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_0"
-                android:background="@color/gray_background"
-                android:gravity="center"
-                android:visibility="gone"
+                android:layout_height="0dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/seperator_view">
+                app:layout_constraintStart_toStartOf="parent">
 
-            <ProgressBar
-                    android:id="@+id/progress_circular"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminateDrawable="@drawable/gradient_progress_bar"
-                    android:indeterminateTintMode="src_in"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
+                    android:background="@android:color/transparent">
+
+                <LinearLayout
+                        android:id="@+id/lytSearchBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        app:layout_scrollFlags="scroll|enterAlways">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/departure_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginTop="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:focusable="false"
+                                android:hint="From"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:layout_constraintBottom_toTopOf="@id/swipe_image_button"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/departure_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:inputType="text"
+                                    android:onClick="@{(p)->model.openGoogleMapsPlaces(`departure`)}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rides_recycleview"
-                android:layout_marginTop="@dimen/size_5"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/seperator_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                        <ImageButton
+                                android:id="@+id/swipe_image_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_5"
+                                android:background="@android:color/transparent"
+                                android:onClick="@{()->model.swapValues()}"
+                                android:src="@drawable/ic_swap_calls_black_24dp"
+                                app:layout_constraintBottom_toTopOf="@id/arrival_edit_text_input"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/departure_edit_text_input" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/arrival_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
+                                android:focusable="false"
+                                android:hint="To"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:layout_constraintBottom_toTopOf="@id/date_edit_text_input"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/swipe_image_button">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/arrival_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:inputType="text"
+                                    android:onClick="@{(p)->model.openGoogleMapsPlaces(`arrival`)}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/date_edit_text_input"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/size_5"
+                                android:layout_marginLeft="@dimen/size_10"
+                                android:layout_marginRight="@dimen/size_10"
+                                android:layout_marginBottom="@dimen/size_10"
+                                android:focusable="false"
+                                android:hint="Date of departure"
+                                android:onClick="@{()->model.datePicker()}"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/arrival_edit_text_input">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/date_edit_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:inputType="text"
+                                    android:onClick="@{()->model.datePicker()}"
+                                    android:textSize="@dimen/text_size_14" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                                android:id="@+id/search_button"
+                                android:layout_width="@dimen/size_0"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_10"
+                                android:background="@drawable/rounded_corners_red"
+                                android:onClick="@{()->model.searchRides()}"
+                                android:text="Search"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_14"
+                                app:layout_constraintEnd_toStartOf="@id/reset_button"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/date_edit_text_input" />
+
+                        <Button
+                                android:id="@+id/reset_button"
+                                android:layout_width="@dimen/size_0"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/size_10"
+                                android:background="@drawable/rounded_corners_red"
+                                android:onClick="@{()->model.resetSearch()}"
+                                android:text="Reset"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_14"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/search_button"
+                                app:layout_constraintTop_toBottomOf="@id/date_edit_text_input" />
+
+                        <View
+                                android:id="@+id/seperator_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/size_10"
+                                android:background="@color/colorPrimary"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/search_button" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <LinearLayout
+                    android:id="@+id/progress_bar_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_background"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                <ProgressBar
+                        android:id="@+id/progress_circular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateDrawable="@drawable/gradient_progress_bar"
+                        android:indeterminateTintMode="src_in"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rides_recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/size_5"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

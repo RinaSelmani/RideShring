@@ -18,6 +18,7 @@ import com.thesis.ridesharing.ui.my_vehicles.MyVehiclesAdapter
 import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehiclesAdapter) {
@@ -25,6 +26,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
     private var firestoreDb: FirebaseFirestore
     val RIDE_COLLECTION = "Rides"
     val VEHICLE_COLLECTION = "Vehicles"
+    val RIDE_USERS_COLLECTION = "Ride_Users"
     val USERS_COLLECTION = "USERS"
     lateinit var currentUser: User
     var uid: String
@@ -58,8 +60,18 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
 
                 adapter.setListOfVehicles(myVehicles)
                 binding.myVehiclesRecycleView.adapter = adapter
-                numberOfSeats = adapter.vehicles[adapter.checkedPosition].numberOfSeats - 1
-                binding.freeSeatsDescpEditText.setText(numberOfSeats.toString())
+                if (adapter.vehicles.size > 0) {
+                    val number_of_seats = adapter.vehicles[adapter.checkedPosition].numberOfSeats
+                    if (number_of_seats != 0) {
+                        numberOfSeats = adapter.vehicles[adapter.checkedPosition].numberOfSeats - 1
+                        binding.freeSeatsDescpEditText.setText(numberOfSeats.toString())
+                    }
+                } else {
+                    binding.priceAndSeatsContainer.visibility = View.GONE
+                    binding.missingCarWarningTextView.visibility = View.VISIBLE
+                }
+
+
                 binding.progressBarHolder.visibility = View.GONE
 
 
@@ -204,20 +216,21 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
                 id = "",
                 departureAndArrivalAndDate = departure + " " + arrival + " " + date,
                 departureAndArrival = departure + " " + arrival,
-                miliseconds = miliseconds
+                miliseconds = miliseconds,
+                rideDescription = description
             )
-
-            firestoreDb.collection(RIDE_COLLECTION).document().set(ride)
+            var rideId = ""
+            firestoreDb.collection(RIDE_COLLECTION).add(ride)
                 .addOnSuccessListener {
-                    Toast.makeText(
-                        binding.root.context,
-                        "Ride added successfully",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
+                    rideId = it.id
                     binding.progressBarHolder.visibility = View.GONE
 
-                    EventBus.getDefault().post(CloseActivityEvent())
 
+
+                }
+                .addOnCompleteListener {
+                    addRideUserInfo(rideId)
                 }
                 .addOnFailureListener() {
                     binding.progressBarHolder.visibility = View.GONE
@@ -225,7 +238,6 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
                     Log.d("ERROR RIDE", it.localizedMessage)
 
                 }
-            binding.progressBarHolder.visibility = View.GONE
 
 
         }
@@ -267,4 +279,21 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
             departureLatLng = swapHelper
         }
     }
+
+    fun addRideUserInfo(rideId: String) {
+        val hashMap = HashMap<String, String>()
+        hashMap[uid] = rideId
+        firestoreDb.collection("RIDES_USERS").document(uid).collection(uid).add(hashMap)
+            .addOnSuccessListener {
+                Toast.makeText(
+                    binding.root.context,
+                    "Ride added successfully",
+                    Toast.LENGTH_SHORT
+                ).show()
+                EventBus.getDefault().post(CloseActivityEvent())
+
+            }
+        binding.progressBarHolder.visibility = View.GONE
+    }
+
 }

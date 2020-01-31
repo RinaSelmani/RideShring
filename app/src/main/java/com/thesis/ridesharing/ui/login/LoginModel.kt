@@ -25,8 +25,8 @@ LoginModel(val binding: LoginActivityBinding) {
     }
     fun login() {
         binding.progressBarHolder.visibility = View.VISIBLE
-        val email = binding.emailEditLine.text.toString()
-        val password = binding.passwordEditLine.text.toString()
+        val email = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
 
 
         if (validateData(email, password)) {
