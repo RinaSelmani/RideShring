@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.thesis.ridesharing.R
+import com.thesis.ridesharing.currentUser
 import com.thesis.ridesharing.databinding.ProfileFragmentBinding
 
 class ProfileFragment : Fragment() {
@@ -16,6 +17,14 @@ class ProfileFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false)
         binding.model=ProfileViewModel(binding)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.nameTextView.setText(currentUser.getNameAndLastName())
+        if (currentUser.gender.equals("M")) {
+            binding.profileImageView.setBackgroundResource(R.drawable.ic_man)
+        }
     }
 
 }

@@ -1,6 +1,5 @@
 package com.thesis.ridesharing.ui.personal_information
 
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -29,6 +28,9 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
         binding.user = currentUser
         if (currentUser.gender.equals("M")) {
             binding.profileImageView.setBackgroundResource(R.drawable.ic_man)
+        }else{
+            binding.profileImageView.setBackgroundResource(R.drawable.ic_girl)
+
         }
         rideIdS = getRideIds()
     }
@@ -97,6 +99,15 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
                     ).show()
                     binding.progressBarHolder.visibility=View.GONE
                 }
+                currentUser = user
+                if (currentUser.gender.equals("M")) {
+                    binding.profileImageView.setBackgroundResource(R.drawable.ic_man)
+                }else{
+                    binding.profileImageView.setBackgroundResource(R.drawable.ic_girl)
+
+                }
+
+
 
 
             }

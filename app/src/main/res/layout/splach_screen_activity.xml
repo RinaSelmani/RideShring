@@ -12,21 +12,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
-            android:background="@color/ghost_white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <TextView
+        <ImageView
+                android:id="@+id/splach_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#33C6D166"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/ride_sharing_logo"
                 android:layout_width="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="@dimen/txt_size_25"
-                android:text="@string/application_name"
+                android:scaleType="centerInside"
+                android:visibility="gone"
                 android:layout_height="match_parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

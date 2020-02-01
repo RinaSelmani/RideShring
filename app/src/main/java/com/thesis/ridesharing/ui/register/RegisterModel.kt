@@ -83,10 +83,13 @@ class RegisterModel(val binding: RegisterActivityBinding) {
                         "This user already exists",
                         Toast.LENGTH_LONG
                     ).show()
+                    binding.progressBarHolder.visibility = View.GONE
+
                 }
 
             }
                 .addOnFailureListener() {
+                    binding.progressBarHolder.visibility = View.GONE
                     Log.d(REGISTER_FIREBASE_ERROR, it.localizedMessage.toString())
                 }
         }

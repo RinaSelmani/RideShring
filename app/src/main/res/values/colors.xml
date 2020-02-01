@@ -13,7 +13,9 @@
     <color name="black">#000000</color>
     <color name="blue">#1D2952</color>
     <color name="light_red">#ffcccb</color>
-    <color name="gray_background">#40CCCCCC</color>
+    <color name="gray_background">#66CCCCCC</color>
     <color name="warning_red_color">#CB0000</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#5C821A</color>
+
 
 </resources>

@@ -75,7 +75,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
+                    app:hintTextAppearance="@style/MyLogInHintStyle"
                     android:hint="Email"
+                    android:textColorHint="@color/colorPrimary"
+                    android:outlineSpotShadowColor="@color/white"
                     app:boxStrokeColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +88,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_edit_text"
                         android:layout_width="match_parent"
+                        android:textColorHint="@color/colorPrimary"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:inputType="textEmailAddress"
                         android:textSize="@dimen/text_size_14" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -97,6 +102,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
                     android:hint="Password"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextAppearance="@style/MyLogInHintStyle"
+                    android:textColorHint="@color/colorPrimary"
+                    android:outlineSpotShadowColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/email_edit_line">
@@ -105,6 +114,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_edit_text"
                         android:layout_width="match_parent"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:textSize="@dimen/text_size_14" />
@@ -118,6 +129,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/log_in"
+
                     android:onClick="@{()->model.login()}"
                     android:layout_marginTop="@dimen/size_20"
                     android:textColor="@color/white"

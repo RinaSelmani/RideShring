@@ -62,11 +62,6 @@ class MainActivity : AppCompatActivity() {
         EventBus.getDefault().unregister(this)
     }
 
-    @Subscribe
-    fun event(openActivityEvent: OpenActivityEvent) {
-        val intent = Intent(this, openActivityEvent.activity::class.java)
-        startActivity(intent)
-    }
 
     @Subscribe
     fun event(logOutEvent: LogOutEvent) {
@@ -77,6 +72,16 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+
+    @Subscribe
+    fun event(openActivityEvent: OpenActivityEvent) {
+        val intent = Intent(this, openActivityEvent.activity::class.java)
+        if (openActivityEvent.objToPass != "") {
+            intent.putExtra("RIDE", openActivityEvent.objToPass)
+        }
+        startActivity(intent)
+    }
+
 
 
 }

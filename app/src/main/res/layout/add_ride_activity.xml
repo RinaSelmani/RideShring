@@ -320,7 +320,6 @@
                                     android:layout_height="wrap_content"
                                     android:drawableRight="@drawable/ic_date"
                                     android:focusable="false"
-                                    android:gravity="center"
                                     android:inputType="text"
                                     android:onClick="@{()->model.datePicker()}"
                                     android:textSize="@dimen/text_size_14" />
@@ -347,7 +346,6 @@
                                     android:layout_height="wrap_content"
                                     android:drawableRight="@drawable/ic_access_time"
                                     android:focusable="false"
-                                    android:gravity="center"
                                     android:inputType="text"
                                     android:onClick="@{()->model.timePicker()}"
                                     android:textSize="@dimen/text_size_14" />
@@ -382,13 +380,13 @@
                         <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/ride_decp_edit_text_input"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/size_10"
                                 android:layout_marginRight="@dimen/size_10"
                                 android:layout_marginBottom="@dimen/size_10"
                                 android:focusable="false"
-                                android:hint="Description fot ride"
+                                android:hint="Description"
                                 app:boxStrokeColor="@color/colorPrimary"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -398,7 +396,6 @@
                                     android:id="@+id/ride_decp_edit_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center"
                                     android:inputType="textMultiLine|text"
                                     android:textSize="@dimen/text_size_14" />
                         </com.google.android.material.textfield.TextInputLayout>

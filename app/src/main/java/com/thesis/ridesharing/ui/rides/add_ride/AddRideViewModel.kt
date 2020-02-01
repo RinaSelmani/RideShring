@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.databinding.AddRideActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.GoogleMapsLocationEvent
+import com.thesis.ridesharing.models.LatLng
 import com.thesis.ridesharing.models.Ride
 import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.models.Vehicle
@@ -31,8 +32,8 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
     lateinit var currentUser: User
     var uid: String
     var numberOfSeats = 0
-    var departureLatLng = com.thesis.ridesharing.models.LatLng(1.45, 3.44)
-    var arrivalLatLng = com.thesis.ridesharing.models.LatLng(3.45, 23.1)
+    var departureLatLng = LatLng()
+    var arrivalLatLng = LatLng()
     var user = User()
 
     init {
