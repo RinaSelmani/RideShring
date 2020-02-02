@@ -196,7 +196,7 @@ class AddRideViewModel(val binding: AddRideActivityBinding, val adapter: MyVehic
         val freeSeats = binding.freeSeatsDescpEditText.text.toString()
         val date = binding.dateEditText.text.toString()
         val time = binding.timeEditText.text.toString()
-        val description = binding.departureEditText.text.toString()
+        val description = binding.rideDecpEditText.text.toString()
         if (validateData(departure, arrival, price, freeSeats, date, time, description)) {
 
             val pattern = "MM/dd/yyyy HH:mm"

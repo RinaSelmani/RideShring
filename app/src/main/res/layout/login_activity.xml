@@ -16,7 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
-            android:background="@drawable/gradient_background"
+            android:background="@drawable/gradient_login_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -78,7 +78,7 @@
                     app:hintTextAppearance="@style/MyLogInHintStyle"
                     android:hint="Email"
                     android:textColorHint="@color/colorPrimary"
-                    android:outlineSpotShadowColor="@color/white"
+                    android:outlineSpotShadowColor="@color/colorPrimary"
                     app:boxStrokeColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
                     app:boxStrokeColor="@color/white"
                     app:hintTextAppearance="@style/MyLogInHintStyle"
                     android:textColorHint="@color/colorPrimary"
-                    android:outlineSpotShadowColor="@color/white"
+                    android:outlineSpotShadowColor="@color/colorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/email_edit_line">

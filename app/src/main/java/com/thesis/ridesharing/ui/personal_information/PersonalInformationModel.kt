@@ -19,8 +19,11 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
     val USERS = "USERS"
     private var firestoreDb: FirebaseFirestore
     val RIDE_COLLECTION = "Rides"
+    val EMAIL_PHONE_COLLECTION = "EMAIL_PHONE"
     var uid: String
     var rideIdS = mutableListOf<String>()
+    var phones = mutableListOf<String>()
+    var emails = mutableListOf<String>()
 
     init {
         uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -33,6 +36,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
 
         }
         rideIdS = getRideIds()
+        getPhones()
     }
 
 
@@ -76,7 +80,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
                 phone_number,
                 gender,
                 age
-            )
+            ) and checkPhone(phone_number)
         ) {
 
             val user = User(
@@ -121,6 +125,8 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
                     binding.progressBarHolder.visibility=View.GONE
 
                 }
+        } else {
+            binding.progressBarHolder.visibility = View.GONE
         }
 
 
@@ -157,6 +163,32 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
         }
 
 
+    }
+
+    fun getPhones() {
+        firestoreDb.collection(EMAIL_PHONE_COLLECTION).get().addOnSuccessListener {
+            for (documents in it.documents) {
+                if (documents.id != uid) {
+                    phones.add(documents["phone"].toString())
+                }
+            }
+
+
+        }
+    }
+
+    fun checkPhone(phone: String): Boolean {
+        if (phone in phones) {
+            Toast.makeText(
+                binding.root.context,
+                "There is another user already using this number",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            return false
+
+        }
+        return true
     }
 
 

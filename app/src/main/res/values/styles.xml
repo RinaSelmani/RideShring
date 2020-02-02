@@ -24,10 +24,10 @@
 
 
     <style name="MyLogInHintStyle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/white</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 
     <style name="MyHintStyle" parent="@android:style/TextAppearance">

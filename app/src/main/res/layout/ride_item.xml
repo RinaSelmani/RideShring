@@ -35,6 +35,18 @@
                 android:layout_margin="@dimen/size_5"
                 android:padding="@dimen/size_5">
 
+            <ImageButton
+                    android:id="@+id/delete_imagebutton"
+                    android:visibility="gone"
+                    android:onClick="@{(s)->model.deleteRide(position)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:padding="@dimen/size_15"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/vertical_guideline_60"
                     android:layout_width="wrap_content"
@@ -47,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Deaprture and Arrival"
+                    android:text="Departure and Arrival"
                     android:textColor="#4D9DD0"
                     android:textSize="@dimen/text_size_12"
                     app:layout_constraintStart_toStartOf="parent"
@@ -318,7 +330,7 @@
                     android:layout_marginRight="@dimen/size_10"
                     android:background="@drawable/rounded_corners_red"
                     android:gravity="center"
-                    android:onClick="@{(p)->model.reserve(position)}"
+                    android:onClick="@{(p)->model.onReservationButtonClicked(position)}"
                     android:text="Reserve"
                     android:textAllCaps="false"
                     android:visibility="gone"

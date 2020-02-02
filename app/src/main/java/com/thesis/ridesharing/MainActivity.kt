@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.databinding.MainActivityBinding
 import com.thesis.ridesharing.events.LogOutEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
+import com.thesis.ridesharing.models.ReserveRideEvent
 import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*

@@ -15,7 +15,7 @@ class Ride(
     var dateTime: Date,
     val price: Double,
     val passengers: MutableList<String>,
-    val freeSeats: Int,
+    var freeSeats: Int,
     val vehicle: Vehicle,
     var id: String,
     val departureAndArrivalAndDate: String,

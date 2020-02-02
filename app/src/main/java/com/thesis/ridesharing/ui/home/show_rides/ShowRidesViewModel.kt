@@ -1,6 +1,7 @@
 package com.thesis.ridesharing.ui.home.show_rides
 
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,6 +41,33 @@ class ShowRidesViewModel(
             }
         }
     }
+
+    fun cancelRide(
+        rideId: String,
+        numberOfFreeSeats: Int,
+        passangers: MutableList<String>
+    ) {
+        val updateHashMap = HashMap<String, Any>()
+        updateHashMap["freeSeats"] = numberOfFreeSeats + 1
+        updateHashMap["passengers"] = passangers
+        firestoreDb.collection(RIDE_COLLECTION).document(rideId)
+            .update(updateHashMap).addOnSuccessListener {
+                Log.d("UPDATERIDE", "GOOD")
+
+            }
+            .addOnFailureListener {
+                Log.d("UPDATERIDE", "BADD ${it.localizedMessage}")
+            }
+
+
+    }
+
+    fun deleteRide(rideId:String){
+        firestoreDb.collection(RIDE_COLLECTION).document(rideId).delete().addOnSuccessListener {
+            Toast.makeText(binding.root.context,"Ride deleted succefully",Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun getMyArchivedRides() {
         firestoreDb.collection(RIDE_COLLECTION)
@@ -118,6 +146,7 @@ class ShowRidesViewModel(
                     }
 
                 }
+                adapter.isDelete=true
                 adapter.setRidesList(listOfRides)
                 binding.ridesRecycleview.adapter = adapter
 
@@ -147,6 +176,8 @@ class ShowRidesViewModel(
                     }
 
                 }
+                adapter.isParticipated=true
+                adapter.currentUserId=uid
                 adapter.setRidesList(listOfRides)
                 binding.ridesRecycleview.adapter = adapter
 

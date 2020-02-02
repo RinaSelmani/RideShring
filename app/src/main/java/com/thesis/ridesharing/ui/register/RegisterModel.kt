@@ -22,10 +22,15 @@ class RegisterModel(val binding: RegisterActivityBinding) {
 
     val COLLECTION_NAME_KEY = "USERS"
     val REGISTER_FIREBASE_ERROR = "ERROR IN REGISTER"
+    val EMAIL_PHONE_COLLECTION = "EMAIL_PHONE"
     private var mDatabase: FirebaseDatabase? = null
+    private var firestoreDb: FirebaseFirestore
+
+
     private var mAuth: FirebaseAuth? = null
 
     init {
+        firestoreDb = FirebaseFirestore.getInstance()
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
     }
@@ -71,7 +76,7 @@ class RegisterModel(val binding: RegisterActivityBinding) {
                     firestoreDb.collection(COLLECTION_NAME_KEY).document(currentUserId)
                         .set(user)
                         .addOnSuccessListener {
-                            EventBus.getDefault().post(OpenActivityEvent(MainActivity()))
+                            addPhone(phone_number)
                         }
                         .addOnFailureListener {
                             Log.d(REGISTER_FIREBASE_ERROR, it.localizedMessage)
@@ -181,6 +186,23 @@ class RegisterModel(val binding: RegisterActivityBinding) {
             ).show()
 
         }
+
+    }
+
+    fun addPhone(phone: String) {
+        val hashMapEmailPhone = HashMap<String, String>()
+        hashMapEmailPhone["phone"] = phone
+        val uid=FirebaseAuth.getInstance().currentUser!!.uid
+
+        firestoreDb.collection(EMAIL_PHONE_COLLECTION).document(uid).set(hashMapEmailPhone)
+            .addOnSuccessListener {
+                EventBus.getDefault().post(OpenActivityEvent(MainActivity()))
+
+            }
+            .addOnFailureListener {
+                Log.d("ERROR", it.localizedMessage.toString())
+
+            }
 
     }
 

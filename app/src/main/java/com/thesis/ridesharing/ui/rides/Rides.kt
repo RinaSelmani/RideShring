@@ -9,7 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.RidesListFragmentBinding
+import com.thesis.ridesharing.models.CancelReservationEvent
+import com.thesis.ridesharing.models.DeleteRideEvent
+import com.thesis.ridesharing.models.ReserveRideEvent
 import com.thesis.ridesharing.ui.home.show_rides.ShowRidesViewModel
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class Rides(val type: String) : Fragment() {
     lateinit var adapter: RideAdapter
@@ -22,4 +27,30 @@ class Rides(val type: String) : Fragment() {
         binding.model= ShowRidesViewModel(binding,adapter,type)
         return binding.root
     }
+    public override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe
+    fun event(cancelReservationEvent: CancelReservationEvent) {
+        binding.model!!.cancelRide(
+            rideId = cancelReservationEvent.rideId,
+            numberOfFreeSeats = cancelReservationEvent.numberOfFreeSeats,
+            passangers = cancelReservationEvent.passangers
+        )
+    }
+
+    @Subscribe
+    fun event(deleteRideEvent: DeleteRideEvent) {
+        binding.model!!.deleteRide(deleteRideEvent.rideId)
+    }
+
+
+
 }

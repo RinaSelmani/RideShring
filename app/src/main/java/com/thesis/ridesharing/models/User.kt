@@ -14,7 +14,7 @@ class User(
     constructor() : this("", "", "", "", "", "F", "")
     fun getAgeBasedOnYear(): String {
         val year = Calendar.getInstance().get(Calendar.YEAR)
-        return (year.toInt() - age.toInt()).toString()
+        return (year.toInt() - age.toInt()).toString()+" y/o"
     }
 
     fun getNameAndLastName():String{

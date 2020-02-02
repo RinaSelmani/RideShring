@@ -22,4 +22,7 @@ class RidesFragment(val type:String="NonArchived") : Fragment() {
 
     }
 
+
+
+
 }

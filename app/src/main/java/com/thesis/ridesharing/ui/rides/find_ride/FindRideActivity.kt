@@ -23,11 +23,13 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
 
+
 class FindRideActivity : Activity() {
     lateinit var binding: FindRideActivityBinding
     lateinit var adapter: RideAdapter
     var AUTOCOMPLETE_REQUEST_CODE = 1
     var typeToFillLocation: String = ""
+    val UPDATE_RIDE_ITEM = 2002
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +65,8 @@ class FindRideActivity : Activity() {
         if (openActivityEvent.objToPass != "") {
             intent.putExtra("RIDE", openActivityEvent.objToPass)
         }
-        startActivity(intent)
+        startActivityForResult(intent, UPDATE_RIDE_ITEM)
+
     }
 
     @Subscribe
@@ -131,6 +134,16 @@ class FindRideActivity : Activity() {
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 val status = Autocomplete.getStatusFromIntent(data!!)
                 Log.i("GOOGLEMAPS", status.statusMessage)
+            }
+        } else if (requestCode == UPDATE_RIDE_ITEM) {
+            if (resultCode == Activity.RESULT_OK) {
+                val newText = data!!.getStringExtra("Reservation")
+                Log.d("YESYES", newText)
+                val arrayText = newText.split(" ")
+                val rideId = arrayText[0]
+                val numberOfSeats = arrayText[1].toInt()
+                val text = arrayText[2]
+                adapter.updateTextAndNumberOfSeats(rideId, numberOfSeats, text)
             }
         }
     }

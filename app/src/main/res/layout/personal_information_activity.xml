@@ -162,6 +162,7 @@
                             android:id="@+id/email_edit_line"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:focusable="false"
                             android:inputType="textEmailAddress"
                             android:text="@{user.email}"
                             android:textSize="@dimen/text_size_14" />
@@ -265,7 +266,7 @@
                             android:drawableRight="@drawable/ic_arrow_drop_down"
                             android:focusable="false"
                             android:onClick="@{()->model.selectAge()}"
-                            android:text="@{user.getAgeBasedOnYear()}"
+                            android:text="@{user.age}"
                             android:textSize="@dimen/text_size_14" />
                 </com.google.android.material.textfield.TextInputLayout>
 
