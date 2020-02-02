@@ -23,6 +23,8 @@ LoginModel(val binding: LoginActivityBinding) {
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
     }
+
+
     fun login() {
         binding.progressBarHolder.visibility = View.VISIBLE
         val email = binding.emailEditText.text.toString()
@@ -31,7 +33,17 @@ LoginModel(val binding: LoginActivityBinding) {
 
         if (validateData(email, password)) {
             mAuth!!.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-                EventBus.getDefault().post(OpenActivityEvent(MainActivity()))
+                if (it.user!!.isEmailVerified) {
+                    EventBus.getDefault().post(OpenActivityEvent(MainActivity()))
+
+                } else {
+                    Toast.makeText(
+                        binding.root.context,
+                        "Please verify your email address by clicking the link we have sent on your email address",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                binding.progressBarHolder.visibility = View.GONE
             }
                 .addOnFailureListener() {
                     Toast.makeText(
@@ -42,6 +54,7 @@ LoginModel(val binding: LoginActivityBinding) {
                     binding.progressBarHolder.visibility = View.GONE
                     Log.d(LOGIN_ERORR,it.localizedMessage)
                 }
+
 
         }
 

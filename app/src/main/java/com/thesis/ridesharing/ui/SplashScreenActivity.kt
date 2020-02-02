@@ -65,8 +65,13 @@ class SplashScreenActivity : Activity() {
 
             if (FirebaseAuth.getInstance().currentUser == null) {
                 intentSplach = Intent(this, LoginActivity::class.java)
-            } else {
+            } else if(!FirebaseAuth.getInstance().currentUser!!.isEmailVerified){
+                intentSplach = Intent(this, LoginActivity::class.java)
+
+            }
+            else{
                 intentSplach = Intent(this, MainActivity::class.java)
+
             }
             startActivity(intentSplach)
 

@@ -23,7 +23,6 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
     var uid: String
     var rideIdS = mutableListOf<String>()
     var phones = mutableListOf<String>()
-    var emails = mutableListOf<String>()
 
     init {
         uid = FirebaseAuth.getInstance().currentUser!!.uid

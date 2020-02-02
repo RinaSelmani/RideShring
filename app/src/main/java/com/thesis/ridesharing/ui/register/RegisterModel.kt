@@ -14,6 +14,7 @@ import com.thesis.ridesharing.email_pattern
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
 import com.thesis.ridesharing.models.User
+import com.thesis.ridesharing.ui.login.LoginActivity
 import com.thesis.ridesharing.years
 import org.greenrobot.eventbus.EventBus
 
@@ -25,6 +26,7 @@ class RegisterModel(val binding: RegisterActivityBinding) {
     val EMAIL_PHONE_COLLECTION = "EMAIL_PHONE"
     private var mDatabase: FirebaseDatabase? = null
     private var firestoreDb: FirebaseFirestore
+    var phones = mutableListOf<String>()
 
 
     private var mAuth: FirebaseAuth? = null
@@ -33,6 +35,7 @@ class RegisterModel(val binding: RegisterActivityBinding) {
         firestoreDb = FirebaseFirestore.getInstance()
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
+        getPhones()
     }
 
     fun register() {
@@ -56,7 +59,7 @@ class RegisterModel(val binding: RegisterActivityBinding) {
                 phone_number,
                 gender,
                 age
-            )
+            ) and checkPhone(phone_number)
         ) {
 
             mAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
@@ -97,6 +100,8 @@ class RegisterModel(val binding: RegisterActivityBinding) {
                     binding.progressBarHolder.visibility = View.GONE
                     Log.d(REGISTER_FIREBASE_ERROR, it.localizedMessage.toString())
                 }
+        } else {
+            binding.progressBarHolder.visibility = View.GONE
         }
     }
 
@@ -177,6 +182,31 @@ class RegisterModel(val binding: RegisterActivityBinding) {
         dialog.show()
     }
 
+    fun getPhones() {
+        firestoreDb.collection(EMAIL_PHONE_COLLECTION).get().addOnSuccessListener {
+            for (documents in it.documents) {
+                phones.add(documents["phone"].toString())
+
+            }
+
+
+        }
+    }
+
+    fun checkPhone(phone: String): Boolean {
+        if (phone in phones) {
+            Toast.makeText(
+                binding.root.context,
+                "There is another user already using this number",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            return false
+
+        }
+        return true
+    }
+
     fun verifyEmail() {
         FirebaseAuth.getInstance().currentUser!!.sendEmailVerification().addOnSuccessListener {
             Toast.makeText(
@@ -196,7 +226,7 @@ class RegisterModel(val binding: RegisterActivityBinding) {
 
         firestoreDb.collection(EMAIL_PHONE_COLLECTION).document(uid).set(hashMapEmailPhone)
             .addOnSuccessListener {
-                EventBus.getDefault().post(OpenActivityEvent(MainActivity()))
+                EventBus.getDefault().post(OpenActivityEvent(LoginActivity()))
 
             }
             .addOnFailureListener {
