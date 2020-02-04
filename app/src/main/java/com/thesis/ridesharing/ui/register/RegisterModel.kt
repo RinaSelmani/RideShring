@@ -24,7 +24,6 @@ class RegisterModel(val binding: RegisterActivityBinding) {
     val COLLECTION_NAME_KEY = "USERS"
     val REGISTER_FIREBASE_ERROR = "ERROR IN REGISTER"
     val EMAIL_PHONE_COLLECTION = "EMAIL_PHONE"
-    private var mDatabase: FirebaseDatabase? = null
     private var firestoreDb: FirebaseFirestore
     var phones = mutableListOf<String>()
 
@@ -33,7 +32,6 @@ class RegisterModel(val binding: RegisterActivityBinding) {
 
     init {
         firestoreDb = FirebaseFirestore.getInstance()
-        mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
         getPhones()
     }
