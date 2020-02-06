@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.ui.my_vehicles
+package com.thesis.ridesharing.ui.vehicles.my_vehicles
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.MyVehiclesActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
-import com.thesis.ridesharing.events.DeleteVehicle
+import com.thesis.ridesharing.events.DeleteVehicleEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -59,7 +59,7 @@ class MyVehiclesActivity : AppCompatActivity() {
     }
 
     @Subscribe
-    fun event(deleteVehicle: DeleteVehicle) {
+    fun event(deleteVehicle: DeleteVehicleEvent) {
         binding.progressBarHolder.visibility = View.VISIBLE
         model.deleteVehicle(position = deleteVehicle.position)
     }

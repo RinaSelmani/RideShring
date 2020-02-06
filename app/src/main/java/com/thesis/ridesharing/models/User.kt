@@ -2,6 +2,7 @@ package com.thesis.ridesharing.models
 
 import java.util.*
 
+
 class User(
     val firstName: String,
     val secondName: String,
@@ -11,10 +12,14 @@ class User(
     val gender: String,
     val age: String
 ) {
-    constructor() : this("", "", "", "", "", "F", "")
+    constructor() : this(
+        "", "",
+        "", "", "",
+        "F", ""
+    )
     fun getAgeBasedOnYear(): String {
         val year = Calendar.getInstance().get(Calendar.YEAR)
-        return (year.toInt() - age.toInt()).toString()+" y/o"
+        return (year - age.toInt()).toString() + " y/o"
     }
 
     fun getNameAndLastName():String{

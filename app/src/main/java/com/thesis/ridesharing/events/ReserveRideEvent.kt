@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.models
+package com.thesis.ridesharing.events
 
 class ReserveRideEvent(
     val rideId: String,

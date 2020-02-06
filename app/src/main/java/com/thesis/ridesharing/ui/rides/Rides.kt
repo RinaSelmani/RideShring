@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.RidesListFragmentBinding
-import com.thesis.ridesharing.models.CancelReservationEvent
-import com.thesis.ridesharing.models.DeleteRideEvent
-import com.thesis.ridesharing.models.ReserveRideEvent
+import com.thesis.ridesharing.events.CancelReservationEvent
+import com.thesis.ridesharing.events.DeleteRideEvent
 import com.thesis.ridesharing.ui.home.show_rides.ShowRidesViewModel
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

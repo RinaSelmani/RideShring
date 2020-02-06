@@ -39,27 +39,6 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
     }
 
 
-    private fun validate_data(
-        email: String,
-        first_name: String,
-        last_name: String,
-        self_description: String,
-        phone: String, gender: String, age: String
-    ): Boolean {
-        if (!email.equals("") and !phone.equals("") and !first_name.equals("") and
-            !last_name.equals("") and !self_description.equals("")
-            and email.matches(email_pattern.toRegex()) and (phone.length == 8) and (!gender.equals(""))
-            and (!age.equals(""))
-        ) {
-            return true
-        }
-        binding.progressBarHolder.visibility = View.INVISIBLE
-        Toast.makeText(binding.root.context, "Please check you register data", Toast.LENGTH_SHORT)
-            .show()
-
-        return false
-    }
-
     fun update() {
         binding.progressBarHolder.visibility = View.VISIBLE
         binding.updateButton.requestFocus()
@@ -131,7 +110,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
 
     }
 
-    fun getRideIds(): MutableList<String> {
+    private fun getRideIds(): MutableList<String> {
         val rideIds = mutableListOf<String>()
         firestoreDb.collection("RIDES_USERS").document(uid).collection(uid).get()
             .addOnSuccessListener {
@@ -143,7 +122,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
         return rideIds
     }
 
-    fun updateProfiles(rideIds: MutableList<String>, user: User) {
+    private fun updateProfiles(rideIds: MutableList<String>, user: User) {
         val hashMap = HashMap<String, User>()
         hashMap["riderProfile"] = user
         for (i in rideIds) {
@@ -164,7 +143,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
 
     }
 
-    fun getPhones() {
+    private fun getPhones() {
         firestoreDb.collection(EMAIL_PHONE_COLLECTION).get().addOnSuccessListener {
             for (documents in it.documents) {
                 if (documents.id != uid) {
@@ -176,7 +155,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
         }
     }
 
-    fun checkPhone(phone: String): Boolean {
+    private fun checkPhone(phone: String): Boolean {
         if (phone in phones) {
             Toast.makeText(
                 binding.root.context,
@@ -192,10 +171,11 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
 
 
     fun closeActivity(){
-        EventBus.getDefault().post(CloseActivityEvent())
+        val eventBus=EventBus.getDefault()
+        eventBus.post(CloseActivityEvent())
     }
 
-    fun loseFosucOfEditLines() {
+    private fun loseFosucOfEditLines() {
         binding.firstNameEditLine.clearFocus()
         binding.lastNameEditLine.clearFocus()
         binding.emailEditLine.clearFocus()
@@ -248,6 +228,27 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
 
         val dialog = builder.create()
         dialog.show()
+    }
+
+    private fun validate_data(
+        email: String,
+        first_name: String,
+        last_name: String,
+        self_description: String,
+        phone: String, gender: String, age: String
+    ): Boolean {
+        if (!email.equals("") and !phone.equals("") and !first_name.equals("") and
+            !last_name.equals("") and !self_description.equals("")
+            and email.matches(email_pattern.toRegex()) and (phone.length == 8) and (!gender.equals(""))
+            and (!age.equals(""))
+        ) {
+            return true
+        }
+        binding.progressBarHolder.visibility = View.INVISIBLE
+        Toast.makeText(binding.root.context, "Please check you register data", Toast.LENGTH_SHORT)
+            .show()
+
+        return false
     }
 
 

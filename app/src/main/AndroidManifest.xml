@@ -52,13 +52,13 @@
             </intent-filter>
 
         </activity>
-        <activity android:name="com.thesis.ridesharing.MainActivity"/>
+        <activity android:name="com.thesis.ridesharing.ui.MainActivity"/>
         <activity android:name="com.thesis.ridesharing.ui.register.RegisterActivity"/>
         <activity android:name="com.thesis.ridesharing.ui.login.LoginActivity"/>
         <activity android:name=".ui.personal_information.PersonalInformationActivity"/>
         <activity android:name=".ui.rides.past_rides.PastRidesActivity"/>
-        <activity android:name=".ui.my_vehicles.MyVehiclesActivity"/>
-        <activity android:name=".ui.add_vehicle.AddVehicleActivity"/>
+        <activity android:name="com.thesis.ridesharing.ui.vehicles.my_vehicles.MyVehiclesActivity"/>
+        <activity android:name="com.thesis.ridesharing.ui.vehicles.add_vehicle.AddVehicleActivity"/>
         <activity android:name=".ui.rides.find_ride.FindRideActivity"/>
         <activity android:name=".ui.rides.ride_detail.RideDetailActivity"/>
         <activity android:name=".ui.rides.add_ride.AddRideActivity"/>

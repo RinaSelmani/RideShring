@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.ui.my_vehicles
+package com.thesis.ridesharing.ui.vehicles.my_vehicles
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.VehicleItemBinding
-import com.thesis.ridesharing.events.DeleteVehicle
-import com.thesis.ridesharing.events.ShowSeatsForRide
+import com.thesis.ridesharing.events.DeleteVehicleEvent
+import com.thesis.ridesharing.events.ShowSeatsForRideEvent
 import com.thesis.ridesharing.models.Vehicle
 import org.greenrobot.eventbus.EventBus
 
@@ -54,7 +54,7 @@ class MyVehiclesAdapter(val isAddRide: Boolean = false) :
 
     inner class VehicleItem(val binding: VehicleItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun deleteVehicle(position: Int) {
-            EventBus.getDefault().post(DeleteVehicle(position = position))
+            EventBus.getDefault().post(DeleteVehicleEvent(position = position))
             vehicles.removeAt(position)
             notifyDataSetChanged()
         }
@@ -63,7 +63,7 @@ class MyVehiclesAdapter(val isAddRide: Boolean = false) :
             if (isAddRide) {
                 checkedPosition = position
                 EventBus.getDefault().post(
-                    ShowSeatsForRide(
+                    ShowSeatsForRideEvent(
                         vehicles[position].numberOfSeats
                                 - 1
                     )

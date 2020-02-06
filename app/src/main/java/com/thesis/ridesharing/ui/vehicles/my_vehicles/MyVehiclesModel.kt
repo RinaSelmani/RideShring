@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.ui.my_vehicles
+package com.thesis.ridesharing.ui.vehicles.my_vehicles
 
 import android.util.Log
 import android.view.View
@@ -9,7 +9,7 @@ import com.thesis.ridesharing.databinding.MyVehiclesActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
 import com.thesis.ridesharing.models.Vehicle
-import com.thesis.ridesharing.ui.add_vehicle.AddVehicleActivity
+import com.thesis.ridesharing.ui.vehicles.add_vehicle.AddVehicleActivity
 import org.greenrobot.eventbus.EventBus
 
 class MyVehiclesModel(val binding: MyVehiclesActivityBinding, val adapter: MyVehiclesAdapter) {

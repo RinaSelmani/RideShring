@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.databinding.RideDetailsActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
-import com.thesis.ridesharing.models.ChangeReservationEvent
+import com.thesis.ridesharing.events.ChangeReservationEvent
 import com.thesis.ridesharing.models.Ride
 import org.greenrobot.eventbus.EventBus
 

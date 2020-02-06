@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.*
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.MapFragmentBinding
 import com.thesis.ridesharing.events.OpenActivityEvent
-import com.thesis.ridesharing.models.RidesPinEvent
+import com.thesis.ridesharing.events.RidesPinEvent
 import com.thesis.ridesharing.ui.rides.ride_detail.RideDetailActivity
 import kotlinx.android.synthetic.main.map_fragment.*
 import org.greenrobot.eventbus.EventBus

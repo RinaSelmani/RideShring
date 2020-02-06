@@ -16,8 +16,8 @@ import com.thesis.ridesharing.databinding.FindRideActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.GoogleMapsLocationEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
-import com.thesis.ridesharing.models.CancelReservationEvent
-import com.thesis.ridesharing.models.ReserveRideEvent
+import com.thesis.ridesharing.events.CancelReservationEvent
+import com.thesis.ridesharing.events.ReserveRideEvent
 import com.thesis.ridesharing.ui.rides.RideAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

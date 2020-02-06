@@ -1,4 +1,4 @@
-package com.thesis.ridesharing
+package com.thesis.ridesharing.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,11 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.thesis.ridesharing.R
+import com.thesis.ridesharing.currentUser
 import com.thesis.ridesharing.databinding.MainActivityBinding
 import com.thesis.ridesharing.events.LogOutEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
-import com.thesis.ridesharing.models.ReserveRideEvent
 import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,7 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navigation_controller = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navigation_controller = Navigation.findNavController(this,
+            R.id.nav_host_fragment
+        )
         navigateBottom(navigation_controller)
         getData()
 

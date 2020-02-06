@@ -1,5 +1,3 @@
 package com.thesis.ridesharing.events
 
-class CloseActivityEvent(val finish_activity: Boolean = false) {
-
-}
+class CloseActivityEvent(val finish_activity: Boolean = false)

@@ -15,9 +15,9 @@ import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.AddRideActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
 import com.thesis.ridesharing.events.GoogleMapsLocationEvent
-import com.thesis.ridesharing.events.ShowSeatsForRide
+import com.thesis.ridesharing.events.ShowSeatsForRideEvent
 import com.thesis.ridesharing.models.LatLng
-import com.thesis.ridesharing.ui.my_vehicles.MyVehiclesAdapter
+import com.thesis.ridesharing.ui.vehicles.my_vehicles.MyVehiclesAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
@@ -56,7 +56,7 @@ class AddRideActivity : Activity() {
     }
 
     @Subscribe
-    fun event(showSeatsForRide: ShowSeatsForRide) {
+    fun event(showSeatsForRide: ShowSeatsForRideEvent) {
         binding.model!!.numberOfSeats = showSeatsForRide.numberOfSeats
         binding.freeSeatsDescpEditText.setText(showSeatsForRide.numberOfSeats.toString())
     }

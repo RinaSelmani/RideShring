@@ -6,8 +6,7 @@ import com.thesis.ridesharing.currentUser
 import com.thesis.ridesharing.databinding.ProfileFragmentBinding
 import com.thesis.ridesharing.events.LogOutEvent
 import com.thesis.ridesharing.events.OpenActivityEvent
-import com.thesis.ridesharing.models.User
-import com.thesis.ridesharing.ui.my_vehicles.MyVehiclesActivity
+import com.thesis.ridesharing.ui.vehicles.my_vehicles.MyVehiclesActivity
 import com.thesis.ridesharing.ui.personal_information.PersonalInformationActivity
 import com.thesis.ridesharing.ui.rides.past_rides.PastRidesActivity
 import org.greenrobot.eventbus.EventBus

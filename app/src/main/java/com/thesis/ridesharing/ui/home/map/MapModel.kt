@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thesis.ridesharing.events.OpenActivityEvent
 import com.thesis.ridesharing.models.Ride
-import com.thesis.ridesharing.models.RidesPinEvent
+import com.thesis.ridesharing.events.RidesPinEvent
 import com.thesis.ridesharing.ui.rides.add_ride.AddRideActivity
 import com.thesis.ridesharing.ui.rides.find_ride.FindRideActivity
 import org.greenrobot.eventbus.EventBus

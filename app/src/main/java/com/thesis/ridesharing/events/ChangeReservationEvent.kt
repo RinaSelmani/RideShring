@@ -1,3 +1,3 @@
-package com.thesis.ridesharing.models
+package com.thesis.ridesharing.events
 
 class ChangeReservationEvent(val numberofSeatsAndReserveText: String)

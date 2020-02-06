@@ -16,7 +16,7 @@
 
         <variable
                 name="model"
-                type="com.thesis.ridesharing.ui.my_vehicles.MyVehiclesAdapter.VehicleItem" />
+                type="com.thesis.ridesharing.ui.vehicles.my_vehicles.MyVehiclesAdapter.VehicleItem" />
 
         <variable
                 name="position"

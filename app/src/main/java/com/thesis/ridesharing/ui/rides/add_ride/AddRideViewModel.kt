@@ -15,7 +15,7 @@ import com.thesis.ridesharing.models.LatLng
 import com.thesis.ridesharing.models.Ride
 import com.thesis.ridesharing.models.User
 import com.thesis.ridesharing.models.Vehicle
-import com.thesis.ridesharing.ui.my_vehicles.MyVehiclesAdapter
+import com.thesis.ridesharing.ui.vehicles.my_vehicles.MyVehiclesAdapter
 import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.*

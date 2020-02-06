@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.thesis.ridesharing.MainActivity
+import com.thesis.ridesharing.ui.MainActivity
 import com.thesis.ridesharing.databinding.LoginActivityBinding
 import com.thesis.ridesharing.email_pattern
 import com.thesis.ridesharing.events.OpenActivityEvent

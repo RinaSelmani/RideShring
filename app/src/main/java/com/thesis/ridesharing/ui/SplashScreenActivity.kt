@@ -13,7 +13,6 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.thesis.ridesharing.MainActivity
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.SplachScreenActivityBinding
 import com.thesis.ridesharing.ui.login.LoginActivity

@@ -30,7 +30,7 @@ class PersonalInformationActivity() : Activity() {
 
 
     @Subscribe
-    fun event(openActivityEvent: CloseActivityEvent) {
+    fun event(closeActivityEvent: CloseActivityEvent) {
         onBackPressed()
     }
 }

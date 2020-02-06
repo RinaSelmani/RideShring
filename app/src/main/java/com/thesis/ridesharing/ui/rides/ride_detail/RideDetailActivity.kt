@@ -8,14 +8,12 @@ import androidx.databinding.DataBindingUtil
 import com.thesis.ridesharing.R
 import com.thesis.ridesharing.databinding.RideDetailsActivityBinding
 import com.thesis.ridesharing.events.CloseActivityEvent
-import com.thesis.ridesharing.models.ChangeReservationEvent
-import com.thesis.ridesharing.ui.rides.find_ride.RideItemAdapter
+import com.thesis.ridesharing.events.ChangeReservationEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
 class RideDetailActivity() : AppCompatActivity() {
     lateinit var binding: RideDetailsActivityBinding
-    lateinit var adapter: RideItemAdapter
     val UPDATE_RIDE_ITEM = "Reservation"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

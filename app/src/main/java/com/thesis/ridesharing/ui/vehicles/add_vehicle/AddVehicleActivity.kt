@@ -1,4 +1,4 @@
-package com.thesis.ridesharing.ui.add_vehicle
+package com.thesis.ridesharing.ui.vehicles.add_vehicle
 
 import android.os.Bundle
 import android.widget.Toast

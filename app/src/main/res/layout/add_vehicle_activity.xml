@@ -11,7 +11,7 @@
 
         <variable
                 name="model"
-                type="com.thesis.ridesharing.ui.add_vehicle.AddVehicleModel"/>
+                type="com.thesis.ridesharing.ui.vehicles.add_vehicle.AddVehicleModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

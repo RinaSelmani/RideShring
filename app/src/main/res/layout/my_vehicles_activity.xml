@@ -10,7 +10,7 @@
 
         <variable
                 name="model"
-                type="com.thesis.ridesharing.ui.my_vehicles.MyVehiclesModel"/>
+                type="com.thesis.ridesharing.ui.vehicles.my_vehicles.MyVehiclesModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
