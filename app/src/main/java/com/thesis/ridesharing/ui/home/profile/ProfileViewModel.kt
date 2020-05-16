@@ -12,8 +12,6 @@ import com.thesis.ridesharing.ui.rides.past_rides.PastRidesActivity
 import org.greenrobot.eventbus.EventBus
 
 class ProfileViewModel(val binding: ProfileFragmentBinding) {
-    val COLLECTION_NAME_KEY = "USERS"
-
     init {
         binding.nameTextView.setText(currentUser.getNameAndLastName())
         if (currentUser.gender.equals("M")) {

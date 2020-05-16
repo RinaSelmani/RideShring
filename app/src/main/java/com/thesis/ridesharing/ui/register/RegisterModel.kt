@@ -128,7 +128,8 @@ class RegisterModel(val binding: RegisterActivityBinding) {
     }
 
     fun closeActivity() {
-        EventBus.getDefault().post(CloseActivityEvent())
+        val eventBus = EventBus.getDefault()
+        eventBus.post(CloseActivityEvent())
     }
 
 

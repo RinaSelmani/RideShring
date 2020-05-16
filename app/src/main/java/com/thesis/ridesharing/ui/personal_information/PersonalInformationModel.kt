@@ -37,6 +37,17 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
         rideIdS = getRideIds()
         getPhones()
     }
+    private fun getPhones() {
+        firestoreDb.collection(EMAIL_PHONE_COLLECTION).get().addOnSuccessListener {
+            for (documents in it.documents) {
+                if (documents.id != uid) {
+                    phones.add(documents["phone"].toString())
+                }
+            }
+
+
+        }
+    }
 
 
     fun update() {
@@ -143,17 +154,7 @@ class PersonalInformationModel(val binding: PersonalInformationActivityBinding) 
 
     }
 
-    private fun getPhones() {
-        firestoreDb.collection(EMAIL_PHONE_COLLECTION).get().addOnSuccessListener {
-            for (documents in it.documents) {
-                if (documents.id != uid) {
-                    phones.add(documents["phone"].toString())
-                }
-            }
 
-
-        }
-    }
 
     private fun checkPhone(phone: String): Boolean {
         if (phone in phones) {
